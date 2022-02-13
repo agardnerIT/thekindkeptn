@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This is the install script that runs on docker build
+# This is the install script that is included in 'docker build' and executes on 'docker run'
 
 echo "-- Bringing up a cluster --"
 bash -c '/usr/local/bin/kind create cluster --image kindest/node:v1.17.0 --name kind-keptn --config /root/kind.yaml'
