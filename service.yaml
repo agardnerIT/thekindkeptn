@@ -10,4 +10,4 @@ spec:
   ports:
     - protocol: TCP
       port: 8080
-      nodePort: 30007
+      nodePort: 31090
