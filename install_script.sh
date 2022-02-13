@@ -2,7 +2,7 @@
 
 # This is the install script that runs on docker build
 
-echo -- Bringing up a cluster --
+echo "-- Bringing up a cluster --"
 bash -c '/usr/local/bin/kind create cluster --image kindest/node:v1.17.0 --name kind-keptn --config /root/kind.yaml'
 
 echo Modifying Kubernetes config to point to Kind master node
@@ -18,7 +18,7 @@ helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn
 echo "-- Installing Job Executor Service --"
 helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
 
-echo "-- Wait for all pods in Keptn namespace to signal ready. Timeout=10 mins"
+echo "-- Wait for all pods in Keptn namespace to signal ready. Timeout=10 mins --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=10m
 
 echo "-- Expose Keptn to http://localhost on port 80 --"
@@ -49,15 +49,15 @@ echo "-- Applying Job Config YAML File (this is the job-exector-service looks at
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/jobconfig.yaml
 keptn add-resource --project=helloworld --service=demoservice --stage=demo --resource=jobconfig.yaml --resourceUri=job/config.yaml
 
-echo "Downloading Sample Cloud Event JSON File"
+echo "-- Downloading Sample Cloud Event JSON File --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/helloevent.cloudevent.json
 
-echo "Triggering first Keptn Sequence"
+echo "-- Triggering first Keptn Sequence --"
 keptn send event -f helloevent.cloudevent.json
-
 echo ========================================================
 echo Keptn is now running
 echo Visit: http://localhost from your machine
+echo Type 'exit' to exit the docker container
 echo ========================================================
 
 # Start up a bash shell to try out kind-keptn
