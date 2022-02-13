@@ -1,0 +1,11 @@
+{
+  "specversion": "1.0",
+  "type": "sh.keptn.event.demo.hello.triggered",
+  "source": "helloworld demo",
+  "datacontenttype": "application/json",
+  "data": {
+    "project": "helloworld",
+    "service": "demostage",
+    "stage": "demo"
+  }
+}
