@@ -9,11 +9,17 @@ echo Modifying Kubernetes config to point to Kind master node
 MASTER_IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-keptn-control-plane)
 sed -i "s/^    server:.*/    server: https:\/\/$MASTER_IP:6443/" $HOME/.kube/config
 
-echo "-- Installing Keptn via Helm (this will take about 10 minutes) --"
-helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0.tgz -n keptn --create-namespace --wait
+echo "-- Waiting for Nodes to Signal Ready (timeout 120s) --"
+kubectl wait --for=condition=ready nodes --all --timeout=120s
+
+#echo "-- Installing Keptn via Helm --"
+helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0.tgz -n keptn --create-namespace
 
 echo "-- Installing Job Executor Service --"
-helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz --wait
+helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
+
+echo "-- Wait for all pods in Keptn namespace to signal ready. Timeout=10 mins"
+kubectl -n keptn wait --for=condition=ready pods --all --timeout=10m
 
 echo "-- Expose Keptn to http://localhost on port 80 --"
 # Patch api-gateway-nginx to include route from NodePort 31090 to 8080
@@ -30,17 +36,24 @@ kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
-echo "-- Authenticating keptn CLI"
+#echo "-- Authenticating keptn CLI"
 export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
 keptn auth --endpoint=http://$NODE_IP:31090 --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
 
-#echo "-- Create Keptn Hello World Project --"
+echo "-- Create Keptn Hello World Project --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/shipyard.yaml
 keptn create project helloworld --shipyard=shipyard.yaml
 keptn create service demoservice --project=helloworld
 
 echo "-- Applying Job Config YAML File (this is the job-exector-service looks at to ultimately runs the helloworld container) --"
-keptn add-resource --project=hello-world --service=demo --stage=dev --resource=jobconfig.yaml --resourceUri=job/config.yaml
+wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/jobconfig.yaml
+keptn add-resource --project=helloworld --service=demoservice --stage=demo --resource=jobconfig.yaml --resourceUri=job/config.yaml
+
+echo "Downloading Sample Cloud Event JSON File"
+wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/helloevent.cloudevent.json
+
+echo "Triggering first Keptn Sequence"
+keptn send event -f helloevent.cloudevent.json
 
 echo ========================================================
 echo Keptn is now running
