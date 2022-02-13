@@ -5,7 +5,7 @@
   "datacontenttype": "application/json",
   "data": {
     "project": "helloworld",
-    "service": "demostage",
+    "service": "demoservice",
     "stage": "demo"
   }
 }
