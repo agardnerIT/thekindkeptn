@@ -6,21 +6,21 @@ RUN apt update
 # Docker will be installed during install_script.sh
 RUN apt-get remove -y \
     docker \
-	docker.io \
-	runc
+    docker.io \
+    runc
 	
 # Install useful packages including docker
 RUN apt install -y \
     curl \
     git \
-	openssl \
+    openssl \
     jq \
     wget \
-	sudo \
-	apt-transport-https \
-	ca-certificates \
-	gnupg2 \
-	software-properties-common
+    sudo \
+    apt-transport-https \
+    ca-certificates \
+    gnupg2 \
+    software-properties-common
 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
@@ -30,8 +30,8 @@ RUN apt update
 
 RUN apt install -y \
     docker-ce \
-	docker-ce-cli \
-	containerd.io
+    docker-ce-cli \
+    containerd.io
 
 RUN curl -sL https://get.keptn.sh | KEPTN_VERSION=0.12.0 bash
 
