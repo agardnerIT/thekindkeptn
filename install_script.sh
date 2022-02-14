@@ -38,7 +38,7 @@ kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 #echo "-- Authenticating keptn CLI"
 NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
-keptn auth --endpoint=http://$NODE_IP:31090 --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
+keptn auth --endpoint=http://$NODE_IP:31090 --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
 
 echo "-- Create Keptn Hello World Project --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/shipyard.yaml
