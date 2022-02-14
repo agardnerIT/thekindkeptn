@@ -4,7 +4,7 @@ RUN apk add --no-cache \
     bash \
     curl \
     docker \
-	openssl
+    openssl \
     wget
 
 # Install kubectl
