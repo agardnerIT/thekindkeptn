@@ -3,10 +3,10 @@
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 
 echo "-- Bringing up a cluster --"
-bash -c '/usr/local/bin/kind create cluster --image kindest/node:v1.17.0 --name kind-keptn --config /root/kind.yaml'
+kind create cluster --image kindest/node:v1.17.0 --name thekindkeptn --config /root/kind.yaml
 
-echo Modifying Kubernetes config to point to Kind master node
-MASTER_IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-keptn-control-plane)
+echo "-- Modifying Kubernetes config to point to Kind master node --"
+MASTER_IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' thekindkeptn-control-plane)
 sed -i "s/^    server:.*/    server: https:\/\/$MASTER_IP:6443/" $HOME/.kube/config
 
 echo "-- Waiting for Nodes to Signal Ready (timeout 120s) --"
@@ -60,9 +60,9 @@ echo Visit: http://localhost from your machine
 echo Type 'exit' to exit the docker container
 echo ========================================================
 
-# Start up a bash shell to try out kind-keptn
+# Start up a bash shell to try out thekindkeptn
 cd
 /bin/bash
 
 # Clean up cluster after exit from shell
-kind delete cluster --name kind-keptn
+kind delete cluster --name thekindkeptn
