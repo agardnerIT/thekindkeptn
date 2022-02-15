@@ -4,7 +4,7 @@
 
 This demo creates a single container with:
 - A k8s cluster inside
-- Helm is available
+- Helm is installed
 - Keptn installed to the `keptn` namespace
 - Keptn bridge and API are exposed onto your localhost on port 80: `http://localhost`
 - The [job executor service](https://github.com/keptn-contrib/job-executor-service)
