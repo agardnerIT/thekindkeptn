@@ -1,4 +1,6 @@
-# thekindkeptn (Work In Progress)
+# The Kind Keptn
+
+### Keptn in a Docker Container
 
 This demo creates a single container with:
 - A k8s cluster inside
