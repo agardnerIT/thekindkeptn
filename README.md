@@ -1,5 +1,9 @@
 # The Kind Keptn
 
+![image](https://user-images.githubusercontent.com/26523841/154243627-5c57a5c4-dc2c-4835-8111-7418d3538ee7.png)
+
+![image](https://user-images.githubusercontent.com/26523841/154243049-13a05813-62c7-4ff5-b633-11af78930470.png)
+
 ### Keptn in a Docker Container
 
 This demo creates a single container with:
@@ -11,7 +15,7 @@ This demo creates a single container with:
 - A demo "hello world" project is created
 - Automatically runs a first "hello world" sequence for you
 
-If you need additional Keptn services, just `docker exec thekindkeptn /bin/sh` then use `helm` to install services. `kubectl` is also available.
+If you need additional Keptn services, just `docker exec -it thekindkeptn /bin/sh` then use `helm` to install services. `kubectl` is also available.
 
 ## Usage
 
