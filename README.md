@@ -27,3 +27,21 @@ It will take around 10 minutes to completely spin up, so do `docker run` then go
 ```
 docker run --rm --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock -it gardnera/thekindkeptn:0.0.1
 ```
+
+## What Happened?
+- We installed Kubernetes, Helm and Keptn into the docker container and exposed it to your localhost
+- We also installed the job executor service. Keptn orchestrates other tools and services are a cornerstone of how it does that. Services abstract the details of dealing with the product and leave you free to get on with your day.
+- Once everything was installed, a cloudevent was sent into Keptn's API (see `helloevent.cloudevent.json`)
+- That cloudevent has a `type` in a specific format that tells Keptn to trigger the `hello` sequence in the `demo` stage (see `shipyard.yaml`)
+- Keptn now knows it needs to trigger the task inside the `hello` sequence. So Keptn crafts and distributes another cloudevent, automatically on our behalf (`sh.keptn.event.hello-world.triggered`)
+- It is this `hello-world.triggered` event that the job executor service is listening for
+- The job executor looks for it's configuration (see `jobconfig.yaml`) and so spins up the `alpine` image to say hello!
+
+
+The power of Keptn is that we've split our process (defined in the `shipyard.yaml`) from the tooling.
+
+Want to get a Slack message instead of a container saying hello? Just swap your services and listen for the same `hello-world.triggered` event. You don't need to know how the Slack APIs work. Someone else has done that for you. Just uninstall the Job Executor Service and install the [notification service](https://github.com/keptn-contrib/notification-service).
+
+Want to trigger a webhook? Just configure the webhook service to send an outbound POST to your tool.
+
+The possibilities are endless.
