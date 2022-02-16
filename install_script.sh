@@ -13,7 +13,15 @@ echo "-- Waiting for Nodes to Signal Ready (timeout 120s) --"
 kubectl wait --for=condition=ready nodes --all --timeout=120s
 
 echo "-- Installing Keptn via Helm --"
-helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0.tgz -n keptn --create-namespace
+extra_params=""
+if [ "$LOOK_AND_FEEL" == "CA" ]; then
+  echo "-- Using cloud automation look and feel --";
+  extra_params="--set=control-plane.bridge.lookAndFeelUrl=https://github.com/agardnerIT/thekindkeptn/raw/main/ca/lookandfeel.zip"
+  else
+    echo "-- Using default look and feel --";
+fi
+
+helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0.tgz -n keptn --create-namespace $extra_params
 
 echo "-- Installing Job Executor Service --"
 helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
@@ -36,7 +44,7 @@ kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
-#echo "-- Authenticating keptn CLI"
+echo "-- Authenticating keptn CLI --"
 NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
 keptn auth --endpoint=http://$NODE_IP:31090 --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
 
