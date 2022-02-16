@@ -6,9 +6,9 @@ This demo creates a single container with:
 - A k8s cluster inside
 - Helm is installed
 - Keptn installed to the `keptn` namespace
-- Keptn bridge and API are exposed onto your localhost on port 80: `http://localhost`
+- Keptn bridge and API are exposed on localhost on port `80`: `http://localhost`
 - The [job executor service](https://github.com/keptn-contrib/job-executor-service)
-- A demo "hello world" project
+- A demo "hello world" project is created
 - Automatically runs a first "hello world" sequence for you
 
 If you need additional Keptn services, just `docker exec thekindkeptn /bin/sh` then use `helm` to install services. `kubectl` is also available.
