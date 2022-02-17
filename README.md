@@ -45,3 +45,20 @@ Want to get a Slack message instead of a container saying hello? Just swap your 
 Want to trigger a webhook? Just configure the webhook service to send an outbound POST to your tool.
 
 The possibilities are endless.
+
+## Troubleshooting
+
+### Node Timeout
+If you get stuck on `-- Waiting for Nodes to Signal Ready (timeout 120s) --` and the nodes never signal `Ready`, most likely Docker does not have enough resources. Go into the Docker settings and allow 8GB RAM.
+
+###
+```
+-- Bringing up a cluster --
+ERROR: node(s) already exist for a cluster with the name "thekindkeptn"
+```
+This usually occurs when a previous run has failed and things have gotten a bit messed up. Expect lots more errors but it's an easy fix.
+
+Just type `exit` and the cluster will be deleted.
+
+Re-run the `docker run...` command and a new cluster will be created.
+
