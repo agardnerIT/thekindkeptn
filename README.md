@@ -51,7 +51,7 @@ The possibilities are endless.
 ### Node Timeout
 If you get stuck on `-- Waiting for Nodes to Signal Ready (timeout 120s) --` and the nodes never signal `Ready`, most likely Docker does not have enough resources. Go into the Docker settings and allow 8GB RAM.
 
-###
+### Nodes Already Exist
 ```
 -- Bringing up a cluster --
 ERROR: node(s) already exist for a cluster with the name "thekindkeptn"
