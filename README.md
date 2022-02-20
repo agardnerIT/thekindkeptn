@@ -1,4 +1,6 @@
-# The Kind Keptn
+# The Kind Keptn (Work In Progress)
+
+> This is still a work in progress. Use at your own risk.
 
 ![image](https://user-images.githubusercontent.com/26523841/154243627-5c57a5c4-dc2c-4835-8111-7418d3538ee7.png)
 
