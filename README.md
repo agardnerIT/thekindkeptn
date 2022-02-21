@@ -1,6 +1,6 @@
 # The Kind Keptn (Work In Progress)
 
-This branch uses `k3d-dind` rather than kind.
+This branch uses `k3d-dind` rather than `kind`.
 
 ```
 git clone -b k3d https://github.com/agardnerIT/thekindkeptn
