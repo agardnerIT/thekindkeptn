@@ -70,5 +70,7 @@ api-gateway-nginx       LoadBalancer   10.43.196.84    172.18.0.2,172.18.0.3   8
 
 Keptn UI (Bridge) will be available passwordless via `http://localhost`.
 
+`curl http://172.18.0.2` and `curl http://172.18.0.3` don't work.
+
 ## Next Steps
 How to `curl` to `http://localhost:80` on the host machine (potentially directly to the proxy)?
