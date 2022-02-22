@@ -2,6 +2,7 @@
 
 # Set global variables
 KEPTN_VERSION=0.12.2
+JOB_EXECUTOR_SERVICE_VERSION=0.1.6
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 
@@ -32,7 +33,7 @@ echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 echo "-- Installing Job Executor Service --"
-helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
+helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
 echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
