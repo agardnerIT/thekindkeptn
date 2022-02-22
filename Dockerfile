@@ -17,4 +17,3 @@ RUN wget https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$
 ENV PATH="${PATH}:/root"
 
 ENTRYPOINT ["/bin/bash", "/install_script.sh"]
-#ENTRYPOINT ["/bin/bash"]
