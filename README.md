@@ -1,10 +1,16 @@
-# The Kind Keptn (Work In Progress)
-
-> This is still a work in progress. Use at your own risk.
+# The Kind Keptn
 
 ![image](https://user-images.githubusercontent.com/26523841/154243627-5c57a5c4-dc2c-4835-8111-7418d3538ee7.png)
 
 ![image](https://user-images.githubusercontent.com/26523841/154243049-13a05813-62c7-4ff5-b633-11af78930470.png)
+
+## Quick Start
+
+Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
+
+```
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.2
+```
 
 ### Keptn in a Docker Container
 
@@ -27,7 +33,7 @@ You will need about 8GB of RAM to run this container (make sure docker resources
 It will take around 10 minutes to completely spin up, so do `docker run` then go and grab a cup of coffee!
 
 ```
-docker run --rm --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock -it gardnera/thekindkeptn:0.0.1
+docker run --rm --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro -it gardnera/thekindkeptn:0.0.1
 ```
 
 ## What Happened?
