@@ -73,6 +73,13 @@ memory=8GB
 processors=8
 ```
 
+### WSL Kernel Update
+Docker desktop usually forces you to upgrade the WSL kernel during installation but if not:
+
+1. Open a `cmd` window as **Administrator** and type `wsl --update` then `wsl --shutdown` and restart Docker Desktop
+
+![image](https://user-images.githubusercontent.com/26523841/155234144-37ac614e-7535-4ca9-a1b5-8e0b0c7b1636.png)
+
 If in doubt, stop all running containers and run `docker system prune` to clean up unused stuff.
 
 
