@@ -1,5 +1,6 @@
 FROM rancher/k3d:5.2.2-dind
 
+ARG KEPTN_VERSION=0.12.2
 COPY install_script.sh /
 COPY k3dconfig.yaml /root/
 
@@ -9,9 +10,9 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master
     ./get_helm.sh
 
 # Install Keptn CLI
-RUN wget https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0-linux-amd64.tar.gz && \
-    tar -xf keptn-0.12.0-linux-amd64.tar.gz && \
-	cp keptn-0.12.0-linux-amd64 /usr/local/bin/keptn
+RUN wget https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION-linux-amd64.tar.gz && \
+    tar -xf keptn-$KEPTN_VERSION-linux-amd64.tar.gz && \
+	cp keptn-$KEPTN_VERSION-linux-amd64 /usr/local/bin/keptn
 
 ENV PATH="${PATH}:/root"
 
