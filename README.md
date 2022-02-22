@@ -54,6 +54,13 @@ Want to trigger a webhook? Just configure the webhook service to send an outboun
 
 The possibilities are endless.
 
+## Version Matrix
+
+| Kind Keptn Version | Notes           | Keptn Version | Job Executor Service Version |
+|--------------------|-----------------|---------------|------------------------------|
+| 0.0.2              | CURRENT VERSION |    0.12.2     |             0.1.6            |
+| 0.0.1              | DO NOT USE      |       -       |           -                  |
+
 ## Troubleshooting
 
 ### Node Timeout
@@ -69,4 +76,6 @@ This usually occurs when a previous run has failed and things have gotten a bit 
 Just type `exit` and the cluster will be deleted.
 
 Re-run the `docker run...` command and a new cluster will be created.
+
+
 
