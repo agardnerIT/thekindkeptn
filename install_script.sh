@@ -25,17 +25,17 @@ helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSI
   --wait --timeout=10m \
   --set=control-plane.apiGatewayNginx.type=LoadBalancer
 
-echo "-- Installing Job Executor Service --"
-helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
-
-echo "-- Wait for all pods in Keptn namespace to signal ready. Timeout=20 mins --"
-kubectl -n keptn wait --for=condition=ready pods --all --timeout=20m
-
 echo "-- Deleting bridge credentials for demo mode (no login required)"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 
 echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
+
+echo "-- Installing Job Executor Service --"
+helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
+
+echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
+kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
 
 # host.docker.internal is a special address that routes to the host machine (eg. laptop)
 echo "-- Authenticating keptn CLI --"
