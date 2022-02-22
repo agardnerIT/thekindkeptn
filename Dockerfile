@@ -1,6 +1,7 @@
 FROM rancher/k3d:5.3.0-dind
 
 ARG KEPTN_VERSION=0.12.2
+
 COPY install_script.sh /
 COPY k3dconfig.yaml /root/
 
@@ -17,4 +18,3 @@ RUN wget https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$
 ENV PATH="${PATH}:/root"
 
 ENTRYPOINT ["/bin/bash", "/install_script.sh"]
-#ENTRYPOINT ["/bin/bash"]
