@@ -52,19 +52,26 @@ The possibilities are endless.
 
 ## Troubleshooting
 
-### Node Timeout
-If you get stuck on `-- Waiting for Nodes to Signal Ready (timeout 120s) --` and the nodes never signal `Ready`, most likely Docker does not have enough resources. Go into the Docker settings and allow 8GB RAM.
+### Windows Users (WSL2 and .wslconfig)
+Windows users, DO NOT IGNORE THIS SECTION. You will run into trouble if you ignore this.
 
-### Nodes Already Exist
+Windows users need to use WSL2 and set their .wslconfig accordingly.
+
+`wsl --status` should show: `Default Version: 2`
+
+Also make sure you create a file called `.wslconfig` and save to `c:\Users\you\.wslconfig:
+
 ```
--- Bringing up a cluster --
-ERROR: node(s) already exist for a cluster with the name "thekindkeptn"
+# Settings apply across all Linux distros running on WSL 2
+[wsl2]
+
+# Limit memory to 8GB
+memory=8GB
+
+# Limit processors to 4 logical processors
+processors=8
 ```
-This usually occurs when a previous run has failed and things have gotten a bit messed up. Expect lots more errors but it's an easy fix.
 
-Just type `exit` and the cluster will be deleted.
-
-Re-run the `docker run...` command and a new cluster will be created.
-
+If in doubt, stop all running containers and run `docker system prune` to clean up unused stuff.
 
 
