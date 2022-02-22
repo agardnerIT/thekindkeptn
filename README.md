@@ -1,5 +1,7 @@
 # The Kind Keptn
 
+The easiest way to get started with Keptn. `docker run` for a Keptn instance.
+
 ![image](https://user-images.githubusercontent.com/26523841/155046532-cec8b635-2e7d-43a1-908e-74b1f98455ff.png)
 
 ## Quick Start
@@ -52,15 +54,14 @@ The possibilities are endless.
 
 ## Troubleshooting
 
-### Windows Users (WSL2 and .wslconfig)
-Windows users, DO NOT IGNORE THIS SECTION. You will run into trouble if you ignore this.
-
+### Windows Users
 Windows users need to use WSL2 and set their .wslconfig accordingly.
 
 `wsl --status` should show: `Default Version: 2`
 
-Also make sure you create a file called `.wslconfig` and save to `c:\Users\you\.wslconfig:
+Also make sure you create a file called `.wslconfig` and save to `c:\Users\you\.wslconfig`.
 
+You can increase the limits if you have more resources available, but this is the minimum spec you need for stability:
 ```
 # Settings apply across all Linux distros running on WSL 2
 [wsl2]
