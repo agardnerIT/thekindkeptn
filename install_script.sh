@@ -1,10 +1,32 @@
 #!/usr/bin/env bash
 
+# this function is called when Ctrl-C is sent
+function trap_ctrlc ()
+{
+    # perform cleanup here
+    echo "Preventing ungraceful shutdown. Please don't use Ctrl+C. Wait until the script has finished and then type: exit"
+}
+
+# initialise trap to call trap_ctrlc function
+# when signal 2 (SIGINT) is received
+trap "trap_ctrlc" 2
+
 # Set global variables
 KEPTN_VERSION=0.12.2
 JOB_EXECUTOR_SERVICE_VERSION=0.1.6
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
+echo "------------------------------------------------------------------------"
+echo " Keptn Installer "
+echo " DO NOT PRESS CONTROL + C to exit..."
+echo " ONLY use 'exit'" 
+echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
+echo " This is required to gracefully cleanup docker and k3d before closing."
+echo ""
+echo " Installer will continue automatically in 10 seconds"
+echo "------------------------------------------------------------------------"
+sleep 10
+
 echo "-- Installing Versions --"
 echo "Keptn: $KEPTN_VERSION"
 echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
