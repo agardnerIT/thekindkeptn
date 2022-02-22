@@ -5,6 +5,9 @@ KEPTN_VERSION=0.12.2
 JOB_EXECUTOR_SERVICE_VERSION=0.1.6
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
+echo "-- Installing Versions --"
+echo "Keptn: $KEPTN_VERSION"
+echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
 
 echo "-- Bringing up a cluster --"
 k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
@@ -26,7 +29,7 @@ helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSI
   --wait --timeout=10m \
   --set=control-plane.apiGatewayNginx.type=LoadBalancer
 
-echo "-- Deleting bridge credentials for demo mode (no login required)"
+echo "-- Deleting bridge credentials for demo mode (no login required) --"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 
 echo "-- Restart Keptn Bridge to load new settings --"
