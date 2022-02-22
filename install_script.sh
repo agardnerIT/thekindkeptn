@@ -1,59 +1,56 @@
 #!/usr/bin/env bash
 
+# Set global variables
+KEPTN_VERSION=0.12.2
+JOB_EXECUTOR_SERVICE_VERSION=0.1.6
+
 # This is the install script that is included in 'docker build' and executes on 'docker run'
+echo "-- Installing Versions --"
+echo "Keptn: $KEPTN_VERSION"
+echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
 
 echo "-- Bringing up a cluster --"
-kind create cluster --image kindest/node:v1.17.0 --name thekindkeptn --config /root/kind.yaml
+k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
 
-echo "-- Modifying Kubernetes config to point to Kind master node --"
-MASTER_IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' thekindkeptn-control-plane)
-sed -i "s/^    server:.*/    server: https:\/\/$MASTER_IP:6443/" $HOME/.kube/config
+echo "-- Waiting for all resources to be ready (timeout 2 mins) --"
+kubectl wait --for=condition=ready pods --all --all-namespaces --timeout=2m
 
-echo "-- Waiting for Nodes to Signal Ready (timeout 120s) --"
-kubectl wait --for=condition=ready nodes --all --timeout=120s
-
-echo "-- Installing Keptn via Helm --"
+echo "-- Installing Keptn via Helm. This will take a few minutes (timeout 10mins) --"
 extra_params=""
 if [ "$LOOK_AND_FEEL" == "CA" ]; then
-  echo "-- Using cloud automation look and feel --";
+  echo "   > Using Cloud Automation Look and Feel";
   extra_params="--set=control-plane.bridge.lookAndFeelUrl=https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/ca/lookandfeel.zip"
   else
-    echo "-- Using default look and feel --";
+    echo "   > Using default look and feel";
 fi
 
-helm install keptn https://github.com/keptn/keptn/releases/download/0.12.0/keptn-0.12.0.tgz -n keptn --create-namespace $extra_params
+helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION.tgz $extra_params \
+  -n keptn --create-namespace \
+  --wait --timeout=10m \
+  --set=control-plane.apiGatewayNginx.type=LoadBalancer
 
-echo "-- Installing Job Executor Service --"
-helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/0.1.6/job-executor-service-0.1.6.tgz
-
-echo "-- Wait for all pods in Keptn namespace to signal ready. Timeout=20 mins --"
-kubectl -n keptn wait --for=condition=ready pods --all --timeout=20m
-
-echo "-- Expose Keptn to http://localhost on port 80 --"
-# Patch api-gateway-nginx to include route from NodePort 31090 to 8080
-# Remember that 31090 will then be mapped to 80 in the kind.yaml file
-# So we can get to keptn from laptop on http://localhost
-# If inside the docker container, we need to use NodePort IP and port combo for example
-# export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
-# curl $NODE_IP:31090
-kubectl -n keptn patch service api-gateway-nginx -p '{"spec": {"ports": [{"port": 8080,"targetPort": 8080, "nodePort": 31090, "name": "httpnp"}],"type": "NodePort"}}'
-
-echo "-- Deleting bridge credentials for demo mode (no login required)"
+echo "-- Deleting bridge credentials for demo mode (no login required) --"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 
 echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
+echo "-- Installing Job Executor Service --"
+helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
+
+echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
+kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
+
+# host.docker.internal is a special address that routes to the host machine (eg. laptop)
 echo "-- Authenticating keptn CLI --"
-NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
-keptn auth --endpoint=http://$NODE_IP:31090 --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
+keptn auth --endpoint=http://host.docker.internal --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
 
 echo "-- Create Keptn Hello World Project --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/shipyard.yaml
 keptn create project helloworld --shipyard=shipyard.yaml
 keptn create service demoservice --project=helloworld
 
-echo "-- Applying Job Config YAML File (this is the job-exector-service looks at to ultimately runs the helloworld container) --"
+echo "-- Applying Job Config YAML File. This is the file the job-exector-service looks at to ultimately runs the helloworld container) --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/jobconfig.yaml
 keptn add-resource --project=helloworld --service=demoservice --stage=demo --resource=jobconfig.yaml --resourceUri=job/config.yaml
 
@@ -73,4 +70,4 @@ cd
 /bin/bash
 
 # Clean up cluster after exit from shell
-kind delete cluster --name thekindkeptn
+k3d cluster delete mykeptn
