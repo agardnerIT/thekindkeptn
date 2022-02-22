@@ -1,8 +1,6 @@
 # The Kind Keptn
 
-![image](https://user-images.githubusercontent.com/26523841/154243627-5c57a5c4-dc2c-4835-8111-7418d3538ee7.png)
-
-![image](https://user-images.githubusercontent.com/26523841/154243049-13a05813-62c7-4ff5-b633-11af78930470.png)
+![image](https://user-images.githubusercontent.com/26523841/155046532-cec8b635-2e7d-43a1-908e-74b1f98455ff.png)
 
 ## Quick Start
 
@@ -25,19 +23,8 @@ This demo creates a single container with:
 
 If you need additional Keptn services, just `docker exec -it thekindkeptn /bin/sh` then use `helm` to install services. `kubectl` is also available.
 
-## Usage
-
-> Warning: This is for demo purposes ONLY. It should NOT be used in production as `docker.sock` exposure is VERY dangerous. You've been warned.
-
-You will need about 8GB of RAM to run this container (make sure docker resources are configured to allow 8GB RAM usage).
-It will take around 10 minutes to completely spin up, so do `docker run` then go and grab a cup of coffee!
-
-```
-docker run --rm --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro -it gardnera/thekindkeptn:0.0.1
-```
-
 ## What Happened?
-- We installed Kubernetes, Helm and Keptn into the docker container and exposed it to your localhost
+- k3d, Helm and Keptn into the docker container and exposed it to your localhost
 - We also installed the job executor service. Keptn orchestrates other tools and services are a cornerstone of how it does that. Services abstract the details of dealing with the product and leave you free to get on with your day.
 - Once everything was installed, a cloudevent was sent into Keptn's API (see `helloevent.cloudevent.json`)
 - That cloudevent has a `type` in a specific format that tells Keptn to trigger the `hello` sequence in the `demo` stage (see `shipyard.yaml`)
@@ -56,10 +43,12 @@ The possibilities are endless.
 
 ## Version Matrix
 
-| Kind Keptn Version | Notes           | Keptn Version | Job Executor Service Version |
+| Kind Keptn Version | Notes           | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------|---------------|------------------------------|
 | 0.0.2              | CURRENT VERSION |    0.12.2     |             0.1.6            |
 | 0.0.1              | DO NOT USE      |       -       |           -                  |
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting
 
