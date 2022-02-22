@@ -15,10 +15,10 @@ kubectl wait --for=condition=ready pods --all --all-namespaces --timeout=2m
 echo "-- Installing Keptn via Helm. This will take a few minutes (timeout 10mins) --"
 extra_params=""
 if [ "$LOOK_AND_FEEL" == "CA" ]; then
-  echo "-- Using Cloud Automation Look and Feel --";
+  echo "   > Using Cloud Automation Look and Feel";
   extra_params="--set=control-plane.bridge.lookAndFeelUrl=https://github.com/agardnerIT/thekindkeptn/raw/main/ca/lookandfeel.zip"
   else
-    echo "-- Using default look and feel --";
+    echo "   > Using default look and feel";
 fi
 
 helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION.tgz $extra_params \
