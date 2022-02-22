@@ -1,4 +1,4 @@
-FROM rancher/k3d:5.2.2-dind
+FROM rancher/k3d:5.3.0-dind
 
 ARG KEPTN_VERSION=0.12.2
 COPY install_script.sh /
