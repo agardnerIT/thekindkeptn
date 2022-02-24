@@ -34,6 +34,9 @@ echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
 echo "-- Bringing up a cluster --"
 k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
 
+# Add sleep before continuing to prevent misleading error
+sleep 10
+
 echo "-- Waiting for all resources to be ready (timeout 2 mins) --"
 kubectl wait --for=condition=ready pods --all --all-namespaces --timeout=2m
 
