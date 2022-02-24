@@ -2,14 +2,14 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-![image](https://user-images.githubusercontent.com/26523841/155245396-8f648202-dd4b-4003-a3c3-3853e258c220.png)
+![image](https://user-images.githubusercontent.com/26523841/155475790-0a5db128-9361-4dac-b635-81e3e77f90d4.png)
 
 ## Quick Start
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.3
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.4
 ```
 
 ### Keptn in a Docker Container
@@ -47,7 +47,8 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes           | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------|---------------|------------------------------|
-| 0.0.3              | Current version. Single node cluster |    0.12.2     |             0.1.6            |
+| 0.0.4              | Current version |    0.12.2     |             0.1.6            |
+| 0.0.3              | Single node cluster |    0.12.2     |             0.1.6            |
 | 0.0.2              | 2 node cluster                |    0.12.2     |             0.1.6            |
 | 0.0.1              | DO NOT USE      |       -       |           -                  |
 
