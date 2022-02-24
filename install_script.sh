@@ -17,7 +17,7 @@ JOB_EXECUTOR_SERVICE_VERSION=0.1.6
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
-echo " Keptn Installer "
+echo " Keptn Installer v0.0.4"
 echo " DO NOT PRESS CONTROL + C to exit..."
 echo " ONLY use 'exit'" 
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
