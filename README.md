@@ -2,14 +2,14 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-![image](https://user-images.githubusercontent.com/26523841/155475790-0a5db128-9361-4dac-b635-81e3e77f90d4.png)
+![image](https://user-images.githubusercontent.com/26523841/156100438-7dda1f2b-7666-4467-9d82-cd209eedb382.png)
 
 ## Quick Start
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.4
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.5
 ```
 
 ### Keptn in a Docker Container
@@ -45,12 +45,13 @@ The possibilities are endless.
 
 ## Version Matrix
 
-| Kind Keptn Version | Notes           | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
-|--------------------|-----------------|---------------|------------------------------|
-| 0.0.4              | Current version |    0.12.2     |             0.1.6            |
-| 0.0.3              | Single node cluster |    0.12.2     |             0.1.6            |
-| 0.0.2              | 2 node cluster                |    0.12.2     |             0.1.6            |
-| 0.0.1              | DO NOT USE      |       -       |           -                  |
+| Kind Keptn Version | Notes               | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
+|--------------------|---------------------|-----------------------------------|---------------------------------------------------------------------------------------|
+| 0.0.5              | Current version     |    0.13.1                         |             0.1.6                                                                     |
+| 0.0.4              |                     |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.3              | Single node cluster |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.2              | 2 node cluster      |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.1              | DO NOT USE          |       -                           |               -                                                                       |
 
 -------------------------------------------------------------------------------------------------------------------------------
 

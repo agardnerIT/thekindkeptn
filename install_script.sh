@@ -12,12 +12,12 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KEPTN_VERSION=0.12.2
+KEPTN_VERSION=0.13.1
 JOB_EXECUTOR_SERVICE_VERSION=0.1.6
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
-echo " Keptn Installer v0.0.4"
+echo " Keptn Installer v0.0.5"
 echo " DO NOT PRESS CONTROL + C to exit..."
 echo " ONLY use 'exit'" 
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
