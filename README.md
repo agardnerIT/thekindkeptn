@@ -47,6 +47,7 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes               | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|---------------------|-----------------------------------|---------------------------------------------------------------------------------------|
+| 0.0.6              | Current version     |    0.13.1                         |             0.1.7                                                                     |
 | 0.0.5              | Current version     |    0.13.1                         |             0.1.6                                                                     |
 | 0.0.4              |                     |    0.12.2                         |             0.1.6                                                                     |
 | 0.0.3              | Single node cluster |    0.12.2                         |             0.1.6                                                                     |
@@ -85,4 +86,5 @@ Docker desktop usually forces you to upgrade the WSL kernel during installation 
 
 If in doubt, stop all running containers and run `docker system prune` to clean up unused stuff.
 
-
+### Still Stuck?
+Join [Keptn Slack](https://slack.keptn.sh) and ask in #help
