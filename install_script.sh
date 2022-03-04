@@ -12,12 +12,13 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
+KIND_KEPTN_VERSION=0.0.6
 KEPTN_VERSION=0.13.1
-JOB_EXECUTOR_SERVICE_VERSION=0.1.6
+JOB_EXECUTOR_SERVICE_VERSION=0.1.7
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
-echo " Keptn Installer v0.0.5"
+echo " Keptn Installer $KIND_KEPTN_VERSION"
 echo " DO NOT PRESS CONTROL + C to exit..."
 echo " ONLY use 'exit'" 
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
@@ -82,6 +83,7 @@ keptn add-resource --project=helloworld --service=demoservice --stage=demo --res
 echo "-- Downloading Sample Cloud Event JSON File --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/helloevent.cloudevent.json
 
+sleep 10
 echo "-- Triggering first Keptn Sequence --"
 keptn send event -f helloevent.cloudevent.json
 echo ========================================================
