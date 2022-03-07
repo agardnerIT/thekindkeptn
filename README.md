@@ -2,14 +2,14 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-[![asciicast](https://asciinema.org/a/473838.svg)](https://asciinema.org/a/473838)
+[![asciicast](https://asciinema.org/a/jdGnNq3oe2WpWMrJWPMBaJ5Ts.svg)](https://asciinema.org/a/jdGnNq3oe2WpWMrJWPMBaJ5Ts)
 
 ## Quick Start
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.6
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro gardnera/thekindkeptn:0.0.7
 ```
 
 ### Keptn in a Docker Container
@@ -45,14 +45,15 @@ The possibilities are endless.
 
 ## Version Matrix
 
-| Kind Keptn Version | Notes               | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
-|--------------------|---------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.0.6              | Current version     |    0.13.1                         |             0.1.7                                                                     |
-| 0.0.5              | Current version     |    0.13.1                         |             0.1.6                                                                     |
-| 0.0.4              |                     |    0.12.2                         |             0.1.6                                                                     |
-| 0.0.3              | Single node cluster |    0.12.2                         |             0.1.6                                                                     |
-| 0.0.2              | 2 node cluster      |    0.12.2                         |             0.1.6                                                                     |
-| 0.0.1              | DO NOT USE          |       -                           |               -                                                                       |
+| Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
+|--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
+| 0.0.6              | Current version. Adds helm-service and jmeter-service     |    0.13.1                         |             0.1.7                                                                     |
+| 0.0.6              |                                                           |    0.13.1                         |             0.1.7                                                                     |
+| 0.0.5              |                                                           |    0.13.1                         |             0.1.6                                                                     |
+| 0.0.4              |                                                           |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.3              | Single node cluster                                       |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.2              | 2 node cluster                                            |    0.12.2                         |             0.1.6                                                                     |
+| 0.0.1              | DO NOT USE                                                |       -                           |               -                                                                       |
 
 -------------------------------------------------------------------------------------------------------------------------------
 

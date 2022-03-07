@@ -12,7 +12,7 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.6
+KIND_KEPTN_VERSION=0.0.7
 KEPTN_VERSION=0.13.1
 JOB_EXECUTOR_SERVICE_VERSION=0.1.7
 
@@ -63,6 +63,12 @@ kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 echo "-- Installing Job Executor Service --"
 helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
+
+echo "-- Installing Helm Service --"
+helm install helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz -n keptn --create-namespace --wait --timeout=10m
+
+echo "-- Installing JMeter Service --"
+helm install jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz -n keptn --create-namespace --wait --timeout=10m
 
 echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
