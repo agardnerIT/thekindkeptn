@@ -2,7 +2,7 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-![animation](./assets/keptn-hello-world-0.0.7.svg)
+![animation](./assets/keptn-hello-world-0.0.8.svg)
 
 ## Quick Start
 
@@ -47,7 +47,8 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.0.7              | Current version. Adds helm-service and jmeter-service     |    0.13.1                         |             0.1.7                                                                     |
+| 0.0.8              | Current version.                                          |    0.13.2                         |             0.1.7                                                                     |
+| 0.0.7              | Adds helm-service and jmeter-service                      |    0.13.1                         |             0.1.7                                                                     |
 | 0.0.6              |                                                           |    0.13.1                         |             0.1.7                                                                     |
 | 0.0.5              |                                                           |    0.13.1                         |             0.1.6                                                                     |
 | 0.0.4              |                                                           |    0.12.2                         |             0.1.6                                                                     |
