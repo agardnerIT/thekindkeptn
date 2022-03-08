@@ -2,7 +2,7 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-[![asciicast](https://asciinema.org/a/jdGnNq3oe2WpWMrJWPMBaJ5Ts.svg)](https://asciinema.org/a/jdGnNq3oe2WpWMrJWPMBaJ5Ts)
+![animation](./assets/keptn-hello-world-0.0.7.svg)
 
 ## Quick Start
 
