@@ -9,7 +9,7 @@ The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.k3d.internal:host-gateway gardnera/thekindkeptn:0.0.9
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.docker.internal:host-gateway gardnera/thekindkeptn:0.0.9
 ```
 
 ### Keptn in a Docker Container
