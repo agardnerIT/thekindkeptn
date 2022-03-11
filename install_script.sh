@@ -95,7 +95,7 @@ echo "-- Triggering first Keptn Sequence --"
 keptn send event -f helloevent.cloudevent.json
 echo ========================================================
 echo Keptn is now running
-echo Visit: http://localhost from your machine
+echo Visit: http://localhost from your host machine
 echo Type 'exit' to exit the docker container
 echo ========================================================
 
