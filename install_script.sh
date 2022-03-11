@@ -54,6 +54,7 @@ helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSI
   -n keptn --create-namespace \
   --wait --timeout=10m \
   --set=control-plane.apiGatewayNginx.type=LoadBalancer
+  --set=control-plane.bridge.versionCheck.enabled=false
 
 echo "-- Deleting bridge credentials for demo mode (no login required) --"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
