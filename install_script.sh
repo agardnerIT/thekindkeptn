@@ -12,7 +12,7 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.8
+KIND_KEPTN_VERSION=0.0.9
 KEPTN_VERSION=0.13.2
 JOB_EXECUTOR_SERVICE_VERSION=0.1.7
 
@@ -53,7 +53,8 @@ fi
 helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION.tgz $extra_params \
   -n keptn --create-namespace \
   --wait --timeout=10m \
-  --set=control-plane.apiGatewayNginx.type=LoadBalancer
+  --set=control-plane.apiGatewayNginx.type=LoadBalancer \
+  --set=control-plane.bridge.versionCheck.enabled=false
 
 echo "-- Deleting bridge credentials for demo mode (no login required) --"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
@@ -94,7 +95,7 @@ echo "-- Triggering first Keptn Sequence --"
 keptn send event -f helloevent.cloudevent.json
 echo ========================================================
 echo Keptn is now running
-echo Visit: http://localhost from your machine
+echo Visit: http://localhost from your host machine
 echo Type 'exit' to exit the docker container
 echo ========================================================
 

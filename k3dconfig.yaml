@@ -3,7 +3,8 @@ apiVersion: k3d.io/v1alpha3
 kind: Simple
 name: mykeptn
 servers: 1
-#agents: 1
+kubeAPI:
+  host: "host.docker.internal" # make kubectl bind to host.docker.internal which will then be mapped to host-gateway via --add-host in docker run command
 ports:
   - port: 80:80
     nodeFilters:
