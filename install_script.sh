@@ -53,7 +53,7 @@ fi
 helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION.tgz $extra_params \
   -n keptn --create-namespace \
   --wait --timeout=10m \
-  --set=control-plane.apiGatewayNginx.type=LoadBalancer
+  --set=control-plane.apiGatewayNginx.type=LoadBalancer \
   --set=control-plane.bridge.versionCheck.enabled=false
 
 echo "-- Deleting bridge credentials for demo mode (no login required) --"
