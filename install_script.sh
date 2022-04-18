@@ -12,8 +12,8 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.12
-KEPTN_VERSION=0.13.4
+KIND_KEPTN_VERSION=0.0.13
+KEPTN_VERSION=0.14.1
 JOB_EXECUTOR_SERVICE_VERSION=0.1.8
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
@@ -53,8 +53,7 @@ fi
 helm install keptn https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/keptn-$KEPTN_VERSION.tgz $extra_params \
   -n keptn --create-namespace \
   --wait --timeout=10m \
-  --set=control-plane.apiGatewayNginx.type=LoadBalancer \
-  --set=control-plane.bridge.versionCheck.enabled=false
+  --set=control-plane.apiGatewayNginx.type=LoadBalancer
 
 echo "-- Deleting bridge credentials for demo mode (no login required) --"
 kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
@@ -63,7 +62,9 @@ echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 echo "-- Installing Job Executor Service --"
-helm install -n keptn job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
+helm install -n keptn \
+--set=distributor.image.tag=0.14.1 \
+job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
 echo "-- Installing Helm Service --"
 helm install helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz -n keptn --create-namespace --wait --timeout=10m
@@ -95,6 +96,7 @@ keptn send event -f helloevent.cloudevent.json
 echo ========================================================
 echo Keptn is now running
 echo Visit: http://localhost from your host machine
+echo You can trigger a sequence from the bridge: http://localhost
 echo Type 'exit' to exit the docker container
 echo ========================================================
 
