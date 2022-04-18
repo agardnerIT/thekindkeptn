@@ -88,15 +88,15 @@ echo "-- Applying Job Config YAML File. This is the file the job-exector-service
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/jobconfig.yaml
 keptn add-resource --project=helloworld --service=demoservice --stage=demo --resource=jobconfig.yaml --resourceUri=job/config.yaml
 
-echo "-- Downloading Sample Cloud Event JSON File --"
-wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/helloevent.cloudevent.json
-
 echo "-- Triggering first Keptn Sequence --"
-keptn send event -f helloevent.cloudevent.json
+keptn trigger sequence --sequence hello --project helloworld --service demoservice --stage demo
+
 echo ========================================================
 echo Keptn is now running
 echo Visit: http://localhost from your host machine
 echo You can trigger a sequence from the bridge: http://localhost
+echo Or using the Keptn CLI:
+echo keptn trigger sequence --sequence hello --project helloworld --service demoservice --stage demo
 echo Type 'exit' to exit the docker container
 echo ========================================================
 
