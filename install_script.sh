@@ -12,9 +12,9 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.13
+KIND_KEPTN_VERSION=0.0.14
 KEPTN_VERSION=0.14.1
-JOB_EXECUTOR_SERVICE_VERSION=0.1.8
+JOB_EXECUTOR_SERVICE_VERSION=0.2.0
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
@@ -24,9 +24,9 @@ echo " ONLY use 'exit'"
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
 echo " This is required to gracefully cleanup docker and k3d before closing."
 echo ""
-echo " Installer will continue automatically in 10 seconds"
+echo " Installer will continue automatically in 5 seconds"
 echo "------------------------------------------------------------------------"
-sleep 10
+sleep 5
 
 echo "-- Installing Versions --"
 echo "Keptn: $KEPTN_VERSION"
@@ -61,9 +61,14 @@ kubectl -n keptn delete secret bridge-credentials --ignore-not-found=true
 echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
+KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
 echo "-- Installing Job Executor Service --"
 helm install -n keptn \
+--namespace keptn-jes --create-namespace \
 --set=distributor.image.tag=0.14.1 \
+--set=remoteControlPlane.api.hostname=api-gateway-nginx.keptn \
+--set=remoteControlPlane.api.token=$KEPTN_API_TOKEN \
+--set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered" \
 job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
 echo "-- Installing Helm Service --"
@@ -77,7 +82,7 @@ kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
 
 # host.docker.internal is a special address that routes to the host machine (eg. laptop)
 echo "-- Authenticating keptn CLI --"
-keptn auth --endpoint=http://host.docker.internal --api-token=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
+keptn auth --endpoint=http://host.docker.internal --api-token=$KEPTN_API_TOKEN
 
 echo "-- Create Keptn Hello World Project --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/shipyard.yaml
