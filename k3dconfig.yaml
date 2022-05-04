@@ -1,7 +1,8 @@
 ---
-apiVersion: k3d.io/v1alpha3
+apiVersion: k3d.io/v1alpha4
 kind: Simple
-name: mykeptn
+metadata:
+  name: mykeptn
 servers: 1
 kubeAPI:
   host: "host.docker.internal" # make kubectl bind to host.docker.internal which will then be mapped to host-gateway via --add-host in docker run command

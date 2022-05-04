@@ -2,14 +2,14 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-![animation](./assets/keptn-hello-world-0.0.13.svg)
+![animation](./assets/keptn-hello-world-0.0.14.svg)
 
 ## Quick Start
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.docker.internal:host-gateway gardnera/thekindkeptn:0.0.13
+docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.docker.internal:host-gateway gardnera/thekindkeptn:0.0.14
 ```
 
 ### Keptn in a Docker Container
@@ -19,7 +19,7 @@ This demo creates a single container with:
 - Helm is installed
 - Keptn installed to the `keptn` namespace
 - Keptn bridge and API are exposed on localhost on port `80`: `http://localhost`
-- The [job executor service](https://github.com/keptn-contrib/job-executor-service)
+- The [job executor service](https://github.com/keptn-contrib/job-executor-service) (installed in `keptn-jes` namespace)
 - A demo "hello world" project is created
 - Automatically runs a first "hello world" sequence for you
 
@@ -47,7 +47,8 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.0.13             | Current version.                                          |    0.14.1                         |             0.1.8                                                                     |
+| 0.0.14             | Current version.                                          |    0.14.1                         |             0.2.0                                                                     |
+| 0.0.13             |                                                           |    0.14.1                         |             0.1.8                                                                     |
 | 0.0.12             |                                                           |    0.13.4                         |             0.1.8                                                                     |
 | 0.0.11             |                                                           |    0.13.4                         |             0.1.7                                                                     |
 | 0.0.10             |                                                           |    0.13.3                         |             0.1.7                                                                     |
