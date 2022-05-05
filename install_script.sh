@@ -63,7 +63,7 @@ kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
 echo "-- Installing Job Executor Service --"
-helm install -n keptn \
+helm install \
 --namespace keptn-jes --create-namespace \
 --set=distributor.image.tag=0.14.1 \
 --set=remoteControlPlane.api.hostname=api-gateway-nginx.keptn \
