@@ -13,7 +13,7 @@ trap "trap_ctrlc" 2
 
 # Set global variables
 KIND_KEPTN_VERSION=0.0.14
-KEPTN_VERSION=0.14.1
+KEPTN_VERSION=0.14.2
 JOB_EXECUTOR_SERVICE_VERSION=0.2.0
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
@@ -38,7 +38,7 @@ k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
 # Add sleep before continuing to prevent misleading error
 sleep 10
 
-echo "-- Waiting for all resources to be ready (timeout 2 mins) --"
+echo "-- Waiting for all core cluster resources to be ready (timeout 2 mins) --"
 kubectl wait --for=condition=ready pods --all --all-namespaces --timeout=2m
 
 echo "-- Installing Keptn via Helm. This will take a few minutes (timeout 10mins) --"
@@ -62,20 +62,26 @@ echo "-- Restart Keptn Bridge to load new settings --"
 kubectl -n keptn delete pods --selector=app.kubernetes.io/name=bridge --wait
 
 KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
-echo "-- Installing Job Executor Service --"
+echo "-- Installing Job Executor Service to namespace 'keptn-jes' (timeout=10m) --"
 helm install \
 --namespace keptn-jes --create-namespace \
---set=distributor.image.tag=0.14.1 \
+--wait --timeout=10m \
 --set=remoteControlPlane.api.hostname=api-gateway-nginx.keptn \
 --set=remoteControlPlane.api.token=$KEPTN_API_TOKEN \
 --set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered" \
 job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
-echo "-- Installing Helm Service --"
-helm install helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz -n keptn --create-namespace --wait --timeout=10m
+echo "-- Installing Helm Service to namespace 'keptn' (timeout=10m) --"
+helm install \
+--namespace keptn --create-namespace \
+--wait --timeout=10m \
+helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz
 
-echo "-- Installing JMeter Service --"
-helm install jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz -n keptn --create-namespace --wait --timeout=10m
+echo "-- Installing JMeter Service to namespace 'keptn' (timeout=10m) --"
+helm install \
+--namespace keptn --create-namespace \
+--wait --timeout=10m \
+jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz
 
 echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m

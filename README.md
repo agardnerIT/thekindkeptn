@@ -47,7 +47,7 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.0.14             | Current version.                                          |    0.14.1                         |             0.2.0                                                                     |
+| 0.0.14             | Current version.                                          |    0.14.2                         |             0.2.0                                                                     |
 | 0.0.13             |                                                           |    0.14.1                         |             0.1.8                                                                     |
 | 0.0.12             |                                                           |    0.13.4                         |             0.1.8                                                                     |
 | 0.0.11             |                                                           |    0.13.4                         |             0.1.7                                                                     |
