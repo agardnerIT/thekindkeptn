@@ -45,7 +45,7 @@ echo "-- Installing Keptn via Helm. This will take a few minutes (timeout 10mins
 extra_params=""
 if [ "$LOOK_AND_FEEL" == "CA" ]; then
   echo "   > Using Cloud Automation Look and Feel";
-  extra_params="--set=control-plane.bridge.lookAndFeelUrl=https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/ca/lookandfeel.zip"
+  extra_params="--set=control-plane.bridge.lookAndFeelUrl=https://d2ixiz0hn5ywb5.cloudfront.net/branding.zip"
   else
     echo "   > Using default look and feel";
 fi
