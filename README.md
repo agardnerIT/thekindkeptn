@@ -2,8 +2,6 @@
 
 The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
-![animation](./assets/keptn-hello-world-0.0.15.svg)
-
 ## Quick Start
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
