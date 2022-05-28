@@ -6,13 +6,4 @@ The kind keptn is **not** designed for production or long term use. It is **not*
 
 ## Components
 
-So what do you get when you run the kind keptn?
-
-1. Fully functioning kubernetes cluster inside docker
-2. Keptn installed into the `keptn` namespace
-3. The keptns UI (bridge) exposed to your local machine on port 80: `http://localhost`
-4. [Job executor services](https://github.com/keptn-contrib/job-executor-service) installed in `keptn-jes` namespace
-5. A web-based terminal exposed on port `7681`: `http://localhost:7681`
-
-
-
+See [the components of kind keptn page](components.md) for what lives inside the kind keptn.
