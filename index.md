@@ -1,10 +1,12 @@
 # The Kind Keptn
 
-The kind keptn (v{{ site.thekindkeptnversion }}) is designed as a disposable, temporary mechanism to quickly evaluate [keptn](https://keptn.sh). The only pre-requisite is docker.
+The kind keptn (v{{ site.thekindkeptnversion }}) is designed as a disposable, temporary mechanism to quickly evaluate [keptn](https://keptn.sh). The only prerequisite is docker.
 
 The kind keptn is **not** designed as a production-ready installation. It is **not** designed for long term use. For those, you want [a proper installation of keptn](https://keptn.sh/docs/quickstart) or a SaaS hosted version.
 
 This microsite covers the basics of thekindkeptn. Full docs and tutorials are found on the [keptn site](https://keptn.sh).
+
+----
 
 ## Quick Start
 
