@@ -15,10 +15,8 @@ gardnera/thekindkeptn:0.0.15
 ```
 
 ## Quick Links
-- The kind keptn dashboard: `http://localhost:8080`
 - Browser based web terminal to interact with the cluster: `http://localhost:7681`
 - Keptn's bridge: `http://localhost/bridge`
-- Keptn's API: `http://localhost/api`
 
 ## Components
 
