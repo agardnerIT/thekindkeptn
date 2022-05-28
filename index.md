@@ -19,13 +19,19 @@ docker run --rm -it \
 gardnera/thekindkeptn:{{ .site.thekindkeptnversion }}
 ```
 
+----
+
 ## I've Installed. What Now?
 
 See [first steps](first-steps.md) to start the keptn discovery path.
 
+----
+
 ## Quick Links
 - Browser based web terminal to interact with the cluster: [http://localhost:7681](http://localhost:7681)
 - Keptn's bridge: [http://localhost/bridge](http://localhost/bridge)
+
+----
 
 ## Components
 
