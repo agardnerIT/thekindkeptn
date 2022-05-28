@@ -10,10 +10,11 @@ The goal of this tutorial is to
 - Deploy a service (using `helm upgrade`)
 - Run performance tests (using [locust](https://locust.io)) against this service
 
-Step 1: Automated testing and releases into `qa` and `production` stages
-Step 2: An approval step will be added to ensure a human must always click "go" before a production release.
-Step 3: Prometheus will then be added to the cluster to monitor the workloads and quality evaluations will be added to ensure no bad build every makes it to production.
-Step 4: SLO-based quality evaluations will be run in production, post rollout. If a bad deployment occurs, the quality gate will fail and remediation actions (rollback?) can easily be actioned.
+The tutorial will progress in steps:
+1. Automated testing and releases into `qa` and `production` stages
+2. An approval step will be added to ensure a human must always click "go" before a production release.
+3. Add Prometheus to the cluster to monitor the workloads. Add SLO-based quality evaluations to ensure no bad build every makes it to production.
+4. Add quality evaluations in production, post rollout. If a bad deployment occurs, the evaluation will fail and remediation actions (rollback?) can be actioned.
 
 ## Create New Project
 
