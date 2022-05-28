@@ -1,6 +1,6 @@
 # End-to-End Delivery
 
-If you have just installed the kind keptn, head here first to understand the out-of-the-box demo.
+If you have just installed the kind keptn, [go here](first-steps.md) first to understand the out-of-the-box demo.
 
 The following tutorial was heavily influenced this [excellent JES PoC tutorial](https://github.com/christian-kreuzberger-dtx/keptn-job-executor-delivery-poc) by @christian-kreuzberger-dtx. Thanks Christian for doing the hard work!
 
