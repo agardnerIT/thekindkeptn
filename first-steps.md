@@ -11,6 +11,7 @@ The installer created a keptn project which is defined in the `shipyard.yaml` fi
 Keptn creates a seperate branch per stage. All configurations and files related to that stage are found under that branch. Keptn creates a folder for each service (`demoservice`).
 
 > Note: Stages cannot currently be added, removed or renamed after project creation. This is a [known limitation](https://github.com/keptn/enhancement-proposals/pull/70)
+
 ----
 
 ## Executing Jobs
