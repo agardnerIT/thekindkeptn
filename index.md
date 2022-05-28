@@ -11,6 +11,7 @@ docker run --rm -it \
 --name thekindkeptn \
 -v /var/run/docker.sock:/var/run/docker.sock:ro \
 --add-host=host.docker.internal:host-gateway \
+--publish 7681:7681 \
 gardnera/thekindkeptn:0.0.15
 ```
 
