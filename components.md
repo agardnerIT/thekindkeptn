@@ -7,7 +7,7 @@ Congratulations, you are running the kind keptn, but what is actually installed?
 1. A fully functioning kubernetes cluster
 2. A web-based terminal window: `http://localhost:7681` (try `kubectl get namespaces`)
 4. [Keptn](https://keptn.sh) installed in the `keptn` namespace
-5. The keptns UI (bridge) available at: `http://localhost/bridge`
+5. The keptn's UI (bridge) available at: `http://localhost/bridge`
 6. The [job executor service](https://github.com/keptn-contrib/job-executor-service) installed in `keptn-jes` namespace
 7. A keptn project created and linked to the Git upstream that you provided
 8. A very basic "hello world" sequence has already been executed for you.
