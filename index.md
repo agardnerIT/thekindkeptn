@@ -14,7 +14,7 @@ docker run --rm -it \
 -v /var/run/docker.sock:/var/run/docker.sock:ro \
 --add-host=host.docker.internal:host-gateway \
 --publish 7681:7681 \
-gardnera/thekindkeptn:0.0.15
+gardnera/thekindkeptn:{{ .site.thekindkeptnversion }}
 ```
 
 ## I've Installed. What Now?
@@ -22,8 +22,8 @@ gardnera/thekindkeptn:0.0.15
 See [first steps](first-steps.md) to start the keptn discovery path.
 
 ## Quick Links
-- Browser based web terminal to interact with the cluster: http://localhost:7681
-- Keptn's bridge: http://localhost/bridge
+- Browser based web terminal to interact with the cluster: [http://localhost:7681](http://localhost:7681)
+- Keptn's bridge: [http://localhost/bridge](http://localhost/bridge)
 
 ## Components
 
