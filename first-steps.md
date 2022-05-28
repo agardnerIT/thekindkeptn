@@ -2,7 +2,7 @@
 
 Head to the [keptn's bridge](http://localhost/bridge). Notice one project `helloworld` which has one stage `demo`. [Go to the sequence view](http://localhost/bridge/project/helloworld/sequence) for the project and click the sequence. the sequence has completed successfully and the log output is `Hello, world!`
 
-![](TODO)
+![hello world sequence](assets/hello-world-sequence.jpg)
 
 During installation you provided a Git upstream repo. This is used as the "backing storage" for keptn. Everything change is recorded in this Git upstream.
 
