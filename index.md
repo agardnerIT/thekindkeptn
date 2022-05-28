@@ -16,7 +16,7 @@ docker run --rm -it \
 -v /var/run/docker.sock:/var/run/docker.sock:ro \
 --add-host=host.docker.internal:host-gateway \
 --publish 7681:7681 \
-gardnera/thekindkeptn:{{ .site.thekindkeptnversion }}
+gardnera/thekindkeptn:{{ .site.thekindkeptn_version }}
 ```
 
 ----
