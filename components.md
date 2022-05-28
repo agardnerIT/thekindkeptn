@@ -1,3 +1,5 @@
+[Back to homepage](index.md)
+
 # Components of The Kind Keptn
 
 Congratulations, you are running the kind keptn, but what is actually installed?
