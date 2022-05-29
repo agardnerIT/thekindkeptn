@@ -4,10 +4,15 @@
 
 This is step 3 of the tutorial. If you missed the previous parts, [start here](full-tour.md)
 
+----
+
 ## Automating a Go or No Go Production Decision
 
 In this step an automated go / no-go decision step will be added. If, based on your criteria, keptn decides the artifact is a `pass`, the release will be automatically promoted to production.
+
 If the evaluation is a `failure`, the release will be blocked.
+
+----
 
 ## Add Prometheus
 To monitor the deployments, we need to add a monitoring provider. This tutorial will use Prometheus. Keptn currently supports the following providers:
@@ -22,6 +27,8 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install prometheus prometheus-community/prometheus --namespace monitoring --wait
 ```
 
+----
+
 ## Keptn Retrieves SLIs from Prometheus
 
 Keptn needs to know how to interact with Prometheus; a keptn SLI provider service is used.
@@ -32,3 +39,22 @@ This service "knows" how to retrieve metrics from Prometheus so we need this **i
 helm install -n keptn prometheus-service https://github.com/keptn-contrib/prometheus-service/releases/download/{{ .site.prometheus_service_version }}/prometheus-service-{{ .site.prometheus_service_version }}.tgz --wait
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/prometheus-service/{{ .site.prometheus_service_version }}/deploy/role.yaml -n monitoring
 ```
+
+----
+
+## Add Prometheus SLIs and SLOs
+The keptn prometheus service needs to know the metrics (or SLIs) to retrieve from Prometheus.
+
+When the metrics are retrieved, they're passed to the keptn core lighthouse service microservice who uses the metrics in conjunction with the SLO definition file.
+
+Every metric receives an individual pass / warning or fail score. The overall evaluation also receives a pass, warning or fail result.
+
+Add these two important files now via the [web terminal](http://localhost:{{ .site.ttyd_port }}) or create and upload the files directly to the `qa` branch of the Git upstream at `helloservice/prometheus/sli.yaml` and `helloservice/slo.yaml`.
+
+```
+cd ~/keptn-job-executor-delivery-poc
+keptn add-resource --project=fulltour --service=helloservice --stage=qa --resource=prometheus/sli.yaml --resourceUri=prometheus/sli.yaml
+keptn add-resource --project=fulltour --service=helloservice --stage=qa --resource=slo.yaml --resourceUri=slo.yaml
+```
+
+![sli and slo files in repo](assets/sli-slo-repo.jpg)
