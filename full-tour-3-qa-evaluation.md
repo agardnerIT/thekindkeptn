@@ -72,3 +72,47 @@ Do so now:
 ```
 keptn configure monitoring prometheus --project=fulltour --service=helloservice
 ```
+
+## Add the Evaluation Gate
+
+Monitoring and metric collection is now complete. All that remains is to add the quality gate. This is much like adding the approval task.
+
+Modify the shipyard file on the `main` branch and add the `evaluation` task as the final step in the `qa` stage. Tell keptn to retrieve the previous 2 minutes of data:
+
+```
+- name: "evaluation"
+  properties:
+    timeframe: "2m"
+```
+
+The shipyard should now look like this:
+
+```
+apiVersion: "spec.keptn.sh/0.2.2"
+kind: "Shipyard"
+metadata:
+  name: "shipyard-delivery"
+spec:
+  stages:
+    - name: "qa"
+      sequences:
+        - name: "delivery"
+          tasks:
+            - name: "je-deployment"
+            - name: "je-test"
+            - name: "evaluation"
+              properties:
+                timeframe: "2m"
+
+    - name: "production"
+      sequences:
+        - name: "delivery"
+          triggeredOn:
+            - event: "qa.delivery.finished"
+          tasks:
+            - name: "approval"
+              properties:
+                pass: "manual"
+                warning: "manual"
+            - name: "je-deployment"
+```
