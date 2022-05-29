@@ -56,3 +56,10 @@ keptn trigger delivery \
 --image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
 --labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
 ```
+
+## Approve Production Release
+
+The artifact will be released into `qa` as before but the sequence now turns blue. Manual interaction is required. Click the `production` link then 
+
+![artifact-approval-1](assets/approval-step1.jpg)
+![artifact-approval-1](assets/approval-step2.jpg)
