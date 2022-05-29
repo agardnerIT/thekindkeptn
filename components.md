@@ -1,4 +1,4 @@
-[Back to homepage](index.md)
+{% include top_menu.md %}
 
 # Components of The Kind Keptn
 
