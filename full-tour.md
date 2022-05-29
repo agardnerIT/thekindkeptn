@@ -103,6 +103,18 @@ Add the job executor service config file. This tells the JES what container and 
 keptn add-resource --project=fulltour --service=helloservice --all-stages --resource=job-executor-config.yaml --resourceUri=job/config.yaml
 ```
 
+----
+
+## Provide additional permissions for Job Executor Service
+
+This gives the `helm deploy` task full cluster-admin access to your Kubernetes cluster. This is not recommended for production setups, but it is needed for this PoC to work (e.g., helm upgrade needs to be able to create namespaces, secrets, ...)
+
+```
+kubectl apply -f https://raw.githubusercontent.com/christian-kreuzberger-dtx/keptn-job-executor-delivery-poc/main/job-executor/workloadClusterRoles.yaml
+```
+
+----
+
 ## Job Executor Must Listen for Events
 The job executor service is currently configured to only listen and react on the `sh.keptn.event.hello-world.triggered` event. This was set during the initial installation.
 
@@ -123,7 +135,9 @@ https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VER
 --set remoteControlPlane.topicSubscription="${TASK_SUBSCRIPTION}",remoteControlPlane.api.protocol=${KEPTN_API_PROTOCOL},remoteControlPlane.api.hostname=${KEPTN_API_HOST},remoteControlPlane.api.token=${KEPTN_API_TOKEN}
 ```
 
-## Trigger Delivery
+----
+
+## 🎉 Trigger Delivery
 You are now ready to trigger delivery of the `helloservice` helm chart into all stages, testing along the way with locust:
 
 You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
@@ -132,9 +146,10 @@ You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-ap
 keptn trigger delivery \
 --project=fulltour \
 --service=helloservice \
---image="ghcr.io/podtato-head/podtatoserver" \
---tag="v0.1.1" \
+--image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
 --labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
+
+keptn trigger delivery --project=$PROJECT --service=helloservice --image=$IMAGE:$VERSION --labels=image=$IMAGE,version=$VERSION
 ```
 
 
