@@ -6,9 +6,9 @@ The following tutorial was heavily influenced this [excellent JES PoC tutorial](
 
 ## Goal
 
-The goal of this tutorial is to
+The goal of this tutorial is to:
 - Deploy a service (using `helm upgrade`)
-- Run performance tests (using [locust](https://locust.io)) against this service
+- Generate load (using [locust](https://locust.io)) against this service
 
 The tutorial will progress in steps:
 1. Automated testing and releases into `qa` and `production` stages
@@ -20,7 +20,7 @@ The tutorial will progress in steps:
 
 1. Please create a brand new, uninitialised Git repository
 2. Save the following shipyard file which defines the new environment
-3. Use the keptn's bridge to create the project visually OR use the [web terminal](http://localhost:{{ site.ttyd_port }}) to create the project
+3. Use the keptn's bridge to create the project visually OR create this file and use the [web terminal](http://localhost:{{ site.ttyd_port }})
 
 Web terminal command:
 ```
@@ -53,5 +53,9 @@ spec:
             - event: "qa.delivery.finished"
           tasks:
             - name: "je-deployment"
-````
+```
+
+![create project](assets/create-project.jpg)
+
+
 
