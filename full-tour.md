@@ -178,11 +178,12 @@ fulltour-production   Active   2m
 Also notice that during the `je-test` task, locust was executed. The `job/config.yaml` file also shows how this was done.
 
 Result: Keptn orchestrated your deployment which was acheived using `helm` and `locust` to generate load.
+
 ----
 
 ## What's Next?
 
 Your application is being deployed into both QA and Production. This is great and indeed Keptn works with ArgoCD and Flux in the same way to ensure code is always up to date.
 
-Sometimes, a manual approval step is required before an artifact is promoted to production. This is especially important right now as we are not testing the quality of the `helloservice` artifact. [Let's add an approval step now](full-tour-2-approval-step.md).
+Sometimes, a manual approval step is required before an artifact is promoted to production. This is especially important right now as we are not testing the quality of the `helloservice` artifact. [Add an approval step now](full-tour-2-approval-step.md).
 
