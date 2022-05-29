@@ -116,7 +116,7 @@ helm upgrade --namespace keptn-jes \
 --wait --timeout=10m \
 --reuse-values \
 --set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered\,sh.keptn.event.je-deployment.triggered\,sh.keptn.event.je-test.triggered" \
-job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz)
+job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz
 ```
 
 
