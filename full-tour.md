@@ -10,7 +10,7 @@ The following tutorial was heavily influenced and expands upon this [excellent J
 
 The goal of this tutorial is to:
 - Deploy a service (using [helm](https://helm.sh))
-- Generate load (using [locust](https://locust.io)) against this service
+- Generate load on the deployed service (using [locust](https://locust.io))
 
 The tutorial will progress in steps:
 1. Automated testing and releases into `qa` and `production` stages
