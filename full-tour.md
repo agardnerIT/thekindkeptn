@@ -112,14 +112,19 @@ Add these new events by updating the JES helm chart. Alternatively, event subscr
 
 ```
 JES_VERSION={{ site.job_executor_service_version }}
-helm upgrade --namespace keptn-jes \
---wait --timeout=10m \
---set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered\,sh.keptn.event.je-deployment.triggered\,sh.keptn.event.je-test.triggered" \
-job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz
+KEPTN_API_PROTOCOL=http
+KEPTN_API_HOST=api-gateway-nginx.keptn
+KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
+TASK_SUBSCRIPTION='sh.keptn.event.hello-world.triggered\,sh.keptn.event.je-deployment.triggered\,sh.keptn.event.je-test.triggered'
+
+helm upgrade -n keptn-jes \
+job-executor-service \
+https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz \
+--set remoteControlPlane.topicSubscription="${TASK_SUBSCRIPTION}",remoteControlPlane.api.protocol=${KEPTN_API_PROTOCOL},remoteControlPlane.api.hostname=${KEPTN_API_HOST},remoteControlPlane.api.token=${KEPTN_API_TOKEN}
 ```
 
 ## Trigger Delivery
-We are all set to trigger delivery of the `helloservice` helm chart into all stages, testing along the way with locust:
+You are now ready to trigger delivery of the `helloservice` helm chart into all stages, testing along the way with locust:
 
 You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
 
