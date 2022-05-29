@@ -9,7 +9,7 @@ The following tutorial was heavily influenced and expands upon this [excellent J
 ## Goal
 
 The goal of this tutorial is to:
-- Deploy a service (using `helm upgrade`)
+- Deploy a service (using [helm](https://helm.sh))
 - Generate load (using [locust](https://locust.io)) against this service
 
 The tutorial will progress in steps:
@@ -148,8 +148,6 @@ keptn trigger delivery \
 --service=helloservice \
 --image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
 --labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
-
-keptn trigger delivery --project=$PROJECT --service=helloservice --image=$IMAGE:$VERSION --labels=image=$IMAGE,version=$VERSION
 ```
 
 ![trigger delivery](assets/trigger-delivery.jpg)
