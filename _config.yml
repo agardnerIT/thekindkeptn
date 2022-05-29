@@ -1,3 +1,4 @@
 theme: jekyll-theme-midnight
 thekindkeptn_version: "0.0.15"
 keptn_docs_version: "0.15.x"
+ttyd_port: "7681"
