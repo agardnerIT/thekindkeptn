@@ -1,3 +1,5 @@
+{% include top_menu.md %}
+
 # First Steps After Installation
 
 Head to the [keptn's bridge](http://localhost/bridge). Notice one project `helloworld` which has one stage `demo`. [Go to the sequence view](http://localhost/bridge/project/helloworld/sequence) for the project and click the sequence. the sequence has completed successfully and the log output is `Hello, world!`
