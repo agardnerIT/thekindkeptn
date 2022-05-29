@@ -20,7 +20,9 @@ Keptn creates a seperate branch per stage. All configurations and files related 
 
 How exactly did the `Hello, world!` get there?
 
-Along with keptn core microservices, one additional service was installed: the [job executor service](https://github.com/keptn-contrib/job-executor-service). This services is extremely flexible and allows keptn users to spin up any scripts (Python, bash or powershell) or any container. The job-executor was told to listen for the `sh.keptn.event.hello-world.triggered` event. In other words, when keptn requests that the task is executed, the job executor will action the task in response to that cloudevent.
+Along with keptn core microservices, one additional service was installed: the [job executor service](https://github.com/keptn-contrib/job-executor-service). This service is extremely flexible and allows keptn to spin up any container or script (eg. Python, bash or powershell).
+
+The job-executor was configured to listen for the `sh.keptn.event.hello-world.triggered` event. In other words, when keptn requests that the task is executed, the job executor will action the task in response to that cloudevent.
 
 ### Sounds good. Show me
 
