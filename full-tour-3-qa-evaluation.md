@@ -141,3 +141,17 @@ The artifact receives a warning score which we told keptn was still good enough 
 
 ![](assets/qa-evaluation-1.jpg)
 ![](assets/qa-evaluation-2.jpg)
+
+----
+
+## What's Next?
+
+Hopefully releases are now regression-proof and bad builds never make it to production.
+
+In reality though, problems may only occur in production so the release process can be enhanced further.
+
+In the next part of this tutorial, a post-release quality evaluation will be added to the production environment which runs after each successful release.
+
+If this evaluation fails, it is a signal that perhaps we should rollback the release.
+
+[Add a production evaluation now >>](full-tour-4-prod-evaluations.md)
