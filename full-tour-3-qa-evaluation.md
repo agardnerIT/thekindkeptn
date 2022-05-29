@@ -116,3 +116,17 @@ spec:
                 warning: "manual"
             - name: "je-deployment"
 ```
+
+----
+
+## 🎉 Trigger Delivery
+
+Once again, trigger delivery of the artifact:
+
+```
+keptn trigger delivery \
+--project=fulltour \
+--service=helloservice \
+--image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
+--labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
+```
