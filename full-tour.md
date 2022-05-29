@@ -118,4 +118,13 @@ helm upgrade --namespace keptn-jes \
 job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz
 ```
 
+## Trigger Delivery
+We are all set to trigger delivery of the `helloservice` helm chart into all stages, testing along the way with locust:
+
+You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
+
+```
+keptn trigger sequence delivery --project fulltour --service helloservice --stage qa
+```
+
 
