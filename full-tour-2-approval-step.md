@@ -61,5 +61,5 @@ keptn trigger delivery \
 
 The artifact will be released into `qa` as before but the sequence now turns blue. Manual interaction is required. Click the `production` link then 
 
-![artifact-approval-1](assets/approval-step1.jpg)
-![artifact-approval-1](assets/approval-step2.jpg)
+![artifact-approval-1](assets/approval-step-1.jpg)
+![artifact-approval-1](assets/approval-step-2.jpg)
