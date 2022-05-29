@@ -129,7 +129,12 @@ You are now ready to trigger delivery of the `helloservice` helm chart into all 
 You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
 
 ```
-keptn trigger sequence delivery --sequence delivery --project fulltour --service helloservice --stage qa
+keptn trigger delivery \
+--project=fulltour \
+--service=helloservice \
+--image="ghcr.io/podtato-head/podtatoserver" \
+--tag="v0.1.1" \
+--labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
 ```
 
 
