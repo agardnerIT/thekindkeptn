@@ -15,7 +15,7 @@ The goal of this tutorial is to:
 The tutorial will progress in steps:
 1. Automated testing and releases into `qa` and `production` stages
 2. An approval step will be added to ensure a human must always click "go" before a production release.
-3. Add Prometheus to the cluster to monitor the workloads. Add SLO-based quality evaluations to ensure no bad build every makes it to production.
+3. Add Prometheus to the cluster to monitor the workloads. Add SLO-based quality evaluations to ensure no bad build ever makes it to production.
 4. Add a quality evaluation in production, post rollout. If a bad deployment occurs, the evaluation will fail and remediation actions (rollback?) can be actioned.
 
 ----
