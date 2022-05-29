@@ -14,7 +14,7 @@ To monitor the deployments, we need to add a monitoring provider. This tutorial 
 
 {% include supported_monitoring_providers.md %}
 
-Using the [web terminal](http://localhost{{ .site.ttyd_port }}), install Prometheus on the cluster:
+Using the [web terminal](http://localhost:{{ .site.ttyd_port }}), install Prometheus on the cluster:
 
 ```
 kubectl create namespace monitoring
