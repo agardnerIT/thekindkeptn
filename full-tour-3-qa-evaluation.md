@@ -85,6 +85,8 @@ Modify the shipyard file on the `main` branch and add the `evaluation` task as t
     timeframe: "2m"
 ```
 
+Change the properties of the production `approval` task to automatically approve the release if the evaluation is a `pass` or `warning`. If the evaluation is a failure, the release will be blocked and the delivery sequence will fail (as it should because the artifact is bad.
+
 The shipyard should now look like this:
 
 ```
@@ -112,8 +114,8 @@ spec:
           tasks:
             - name: "approval"
               properties:
-                pass: "manual"
-                warning: "manual"
+                pass: "automatic"
+                warning: "automatic"
             - name: "je-deployment"
 ```
 
