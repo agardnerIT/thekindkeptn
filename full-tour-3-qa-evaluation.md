@@ -132,3 +132,12 @@ keptn trigger delivery \
 --image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
 --labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
 ```
+
+----
+
+## Outcome
+
+The artifact receives a warning score which we told keptn was still good enough to allow an automatic release. Keptn stores a full history of every previous evaluation and will automatically compare new builds against old.
+
+![](assets/qa-evaluation-1.jpg)
+![](assets/qa-evaluation-2.jpg)
