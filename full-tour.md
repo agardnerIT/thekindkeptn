@@ -104,7 +104,7 @@ keptn add-resource --project=fulltour --service=helloservice --all-stages --reso
 ```
 
 ## Job Executor Must Listen for Events
-The job executor service is currently configured to only listen and react on the `sh.keptn.event.hello.triggered` event. This was set during the initial installation.
+The job executor service is currently configured to only listen and react on the `sh.keptn.event.hello-world.triggered` event. This was set during the initial installation.
 
 We need the JES to fire on our new task events: `sh.keptn.event.je-deployment.triggered` and `sh.keptn.event.je-test.triggered`
 
