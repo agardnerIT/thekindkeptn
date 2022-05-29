@@ -2,7 +2,7 @@
 
 If you have just installed the kind keptn, [go here](first-steps.md) first to understand the out-of-the-box demo.
 
-The following tutorial was heavily influenced this [excellent JES PoC tutorial](https://github.com/christian-kreuzberger-dtx/keptn-job-executor-delivery-poc) by @christian-kreuzberger-dtx. Thanks Christian for doing the hard work!
+The following tutorial was heavily influenced and expands upon this [excellent JES PoC tutorial](https://github.com/christian-kreuzberger-dtx/keptn-job-executor-delivery-poc) by @christian-kreuzberger-dtx. Thanks Christian for doing the hard work!
 
 ----
 
@@ -124,7 +124,7 @@ We are all set to trigger delivery of the `helloservice` helm chart into all sta
 You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
 
 ```
-keptn trigger sequence delivery --project fulltour --service helloservice --stage qa
+keptn trigger sequence delivery --sequence delivery --project fulltour --service helloservice --stage qa
 ```
 
 
