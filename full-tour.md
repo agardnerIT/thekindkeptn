@@ -78,7 +78,7 @@ keptn create service helloservice --project=fulltour
 
 Provide keptn with the important files it needs during the sequence execution. Your choice: Either upload directly to the upstream Git repo or use the `keptn add resource` commands. The result is the same. `keptn add resource` is just a helpful wrapper around `git add / commit / push`
 
-In the web terminal](http://localhost:{{ site.ttyd_port }}), clone Christian's PoC repo to download all necessary files:
+In the [web terminal](http://localhost:{{ site.ttyd_port }}), clone Christian's PoC repo to download all necessary files:
 
 ```
 git clone https://github.com/christian-kreuzberger-dtx/keptn-job-executor-delivery-poc.git
