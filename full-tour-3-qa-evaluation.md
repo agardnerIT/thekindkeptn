@@ -58,3 +58,17 @@ keptn add-resource --project=fulltour --service=helloservice --stage=qa --resour
 ```
 
 ![sli and slo files in repo](assets/sli-slo-repo.jpg)
+
+----
+
+## Tell Keptn to Use Prometheus Service for Project
+
+Prometheus is installed, the prometheus SLI provider service is installed and the metrics and SLO file are present in the Git repo.
+
+However, we still haven't told Keptn to use Prometheus for the `helloservice` of the `fulltour` project.
+
+Do so now:
+
+```
+keptn configure monitoring prometheus --project=fulltour --service=helloservice
+```
