@@ -123,6 +123,17 @@ The job executor service is currently configured to only listen and react on the
 
 We need the JES to fire on our new task events: `sh.keptn.event.je-deployment.triggered` and `sh.keptn.event.je-test.triggered`
 
+Go to the [integration page](http://localhost/bridge/project/fulltour/settings/uniform/integrations) and add two new integrations for `je-deployment.triggered` and `je-test.triggered`.
+
+![new integrations](assets/new_integrations.jpg)
+
+The job executor service subscriptions should look like this:
+
+![three subscriptions](assets/3_subscriptions.jpg)
+
+<!-- 
+Wait for outcome of: https://github.com/keptn/keptn/issues/7885
+
 Add these new events by updating the JES helm chart. Alternatively, event subscriptions can be adjusted in the UI ([keptn's bridge](http://localhost/bridge)). 
 
 ```
@@ -137,6 +148,7 @@ job-executor-service \
 https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz \
 --set remoteControlPlane.topicSubscription="${TASK_SUBSCRIPTION}",remoteControlPlane.api.protocol=${KEPTN_API_PROTOCOL},remoteControlPlane.api.hostname=${KEPTN_API_HOST},remoteControlPlane.api.token=${KEPTN_API_TOKEN}
 ```
+-->
 
 ----
 
