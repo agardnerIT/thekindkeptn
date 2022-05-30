@@ -95,10 +95,4 @@ Trigger delivery of the "good build". This should:
 1. Pass the `qa` quality gate and be automatically promoted to production
 2. Pass the `production` quality gate and remain in production
 
-```
-keptn trigger delivery \
---project=fulltour \
---service=helloservice \
---image="{{ .site.image }}:{{ .site.good_version }}" \
---labels=image="{{ .site.image }}",version="{{ .site.good_version }}"
-```
+{% include full_tour_trigger_delivery_good_version.md %}
