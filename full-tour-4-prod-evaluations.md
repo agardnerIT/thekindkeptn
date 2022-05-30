@@ -96,3 +96,9 @@ Trigger delivery of the "good build". This should:
 2. Pass the `production` quality gate and remain in production
 
 {% include full_tour_trigger_delivery_good_version.md %}
+
+Check the application version running in each environment:
+
+{% include full_tour_check_pod_versions.md %}
+
+Should show `{{ .site.good_version }}` in both environments.
