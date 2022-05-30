@@ -157,6 +157,8 @@ keptn trigger delivery \
 --labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.2"
 ```
 
+![slow build failed](assets/failed_build.jpg)
+
 ----
 
 ## What's Next?
