@@ -27,6 +27,16 @@ keptn add-resource --project=fulltour --service=helloservice --stage=production 
 keptn add-resource --project=fulltour --service=helloservice --stage=production --resource=slo.yaml --resourceUri=slo.yaml
 ```
 
+## Add Locust Files
+
+Locust has the correct files for `qa` but needs the production files now too. Upload them now (or commit them directly to Git, up to you):
+
+```
+cd ~/keptn-job-executor-delivery-poc
+keptn add-resource --project=fulltour --service=helloservice --stage=production --resource=./locust/basic.py
+keptn add-resource --project=fulltour --service=helloservice --stage=production --resource=./locust/locust.conf
+```
+
 ## Modify Shipyard
 
 Modify the shipyard on the `main` branch again. After the `je-deployment` task, add two new tasks to the `production` stage:
