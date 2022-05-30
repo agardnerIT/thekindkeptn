@@ -125,13 +125,7 @@ spec:
 
 Once again, trigger delivery of the artifact:
 
-```
-keptn trigger delivery \
---project=fulltour \
---service=helloservice \
---image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
---labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
-```
+{% include full_tour_trigger_delivery_good_version.md %}
 
 ----
 
@@ -149,13 +143,7 @@ The artifact receives a warning score which we told keptn was still good enough 
 Now attempt to release a slow build. Keptn will release the artifact to `qa` as there are no quality checks in `qa`.
 The quality evaluation before production will fail (as it should), thus the slow artifact is never released to production - protecting users.
 
-```
-keptn trigger delivery \
---project=fulltour \
---service=helloservice \
---image="ghcr.io/podtato-head/podtatoserver:v0.1.2" \
---labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.2"
-```
+{% include full_tour_trigger_delivery_slow_version.md %}
 
 ![slow build failed](assets/failed_build.jpg)
 
