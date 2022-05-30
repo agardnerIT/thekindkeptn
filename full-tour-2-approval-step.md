@@ -86,11 +86,11 @@ The `approval.finished` event will not be sent back to keptn until user input ha
 
 ## Next Steps
 
-Blindly promoting artifacts to production and requiring manual approvals before each deployment are at two ends of the spectrum.
+Blindly promoting artifacts to production and requiring manual approvals before each deployment are at opposite ends of the spectrum. One is dangerous, the other slows innovation. Is there a safer middle ground?
 
-How can keptn to be used to introduce "guard rails" in this process? Perhaps an artifact is allowed to go into production if it passes the evaluation but manual approval is required if the quality evaluation is a warning or a failure.
+Perhaps an artifact is allowed to go into production if it passes the evaluation but manual approval is required if the quality evaluation is a warning or a failure.
 
-Next, we will monitor the `helloservice` application and programatically approve / decline releases based on a quality signature defined by us and calculated by keptn.
+In the next step, keptn will introduce "guard rails" in this process. The `helloservice` application will be monitored and releases will be programatically approved / declined based on a quality signature defined by you and calculated by keptn.
 
 Continue to [add automated quality evaluations >>](full-tour-3-qa-evaluation.md)
 
