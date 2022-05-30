@@ -49,13 +49,7 @@ spec:
 
 In the [web terminal](http://localhost:{{ site.ttyd_port }}) run the same command as before to trigger delivery of an artifact.
 
-```
-keptn trigger delivery \
---project=fulltour \
---service=helloservice \
---image="{{ .site.image }}:{{ .site.good_version }}" \
---labels=image="{{ .site.image }}",version="{{ .site.good_version }}"
-```
+{% include full_tour_trigger_delivery_good_version.md %}
 
 ## Approve Production Release
 
