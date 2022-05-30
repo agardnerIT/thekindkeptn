@@ -30,15 +30,8 @@ The tutorial will progress in steps:
 
 Web terminal command:
 ```
-keptn create project fulltour \
---shipyard shipyard.yaml \
---git-remote-url <YOUR-GIT-REPO> \
---git-user <YOUR-GIT-USERNAME> \
---git-token <YOUR-GIT-PAT-TOKEN>
-```
-
-**shipyard.yaml**
-```
+cd ~
+cat << EOF > shipyard.yaml
 apiVersion: "spec.keptn.sh/0.2.2"
 kind: "Shipyard"
 metadata:
@@ -59,6 +52,12 @@ spec:
             - event: "qa.delivery.finished"
           tasks:
             - name: "je-deployment"
+EOF
+keptn create project fulltour \
+--shipyard shipyard.yaml \
+--git-remote-url <YOUR-GIT-REPO> \
+--git-user <YOUR-GIT-USERNAME> \
+--git-token <YOUR-GIT-PAT-TOKEN>
 ```
 
 ![create project](assets/create-project.jpg)
