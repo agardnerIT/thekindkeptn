@@ -65,7 +65,9 @@ keptn create project fulltour \
 ----
 
 ## Create Service
-Create a service called `helloservice` (it must be called precisely that - you will see why later). Do it either via the UI or the `keptn` CLI command in the [web terminal](http://localhost:{{ site.ttyd_port }}):
+Create a service called `helloservice`. It must be called precisely that because the helm chart we use is called `helloservice.tgz` and the job executor runs `helm install` and relies on a file being available called `helloservice.tgz`.
+
+Do it either via the UI or the `keptn` CLI command in the [web terminal](http://localhost:{{ site.ttyd_port }}):
 
 ```
 keptn create service helloservice --project=fulltour
