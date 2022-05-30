@@ -74,7 +74,7 @@ spec:
                 timeframe: "2m"
 ```
 
-> An additional `je-test` step is added so locust generates some load on teh application. In a real production, this task would probably be unneccessary as production traffic would already be present
+> An additional `je-test` step is added so locust generates some load on the application. In a real production environment, this task would probably be unneccessary as production traffic would already be present.
 
 ----
 
@@ -92,5 +92,3 @@ keptn trigger delivery \
 --image="{{ .site.image }}:{{ .site.good_version }}" \
 --labels=image="{{ .site.image }}",version="{{ .site.good_version }}"
 ```
-
-
