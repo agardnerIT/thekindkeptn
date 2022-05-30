@@ -136,6 +136,12 @@ The artifact receives a warning score which we told keptn was still good enough 
 ![](assets/qa-evaluation-1.jpg)
 ![](assets/qa-evaluation-2.jpg)
 
+Check the application version running in each environment:
+
+{% include full_tour_check_pod_versions.md %}
+
+Should show `{{ .site.good_version }}` in both environments.
+
 ----
 
 ## Attempt to Release a Slow Build
@@ -146,6 +152,12 @@ The quality evaluation before production will fail (as it should), thus the slow
 {% include full_tour_trigger_delivery_slow_version.md %}
 
 ![slow build failed](assets/failed_build.jpg)
+
+Check the application version running in each environment:
+
+{% include full_tour_check_pod_versions.md %}
+
+Should show `{{ .site.slow_version }}` in `qa` and `{{ .site.good_version }}` in `production.
 
 ----
 
