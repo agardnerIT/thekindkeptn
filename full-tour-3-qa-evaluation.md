@@ -157,7 +157,7 @@ Check the application version running in each environment:
 
 {% include full_tour_check_pod_versions.md %}
 
-Should show `{{ .site.slow_version }}` in `qa` and `{{ .site.good_version }}` in `production.
+Should show `{{ .site.slow_version }}` in `qa` and `{{ .site.good_version }}` in `production`.
 
 ----
 
