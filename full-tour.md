@@ -157,13 +157,7 @@ You are now ready to trigger delivery of the `helloservice` helm chart into all 
 
 You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-api), via the bridge UI or via the keptn CLI:
 
-```
-keptn trigger delivery \
---project=fulltour \
---service=helloservice \
---image="{{ .site.image }}:{{ .site.good_version }}" \
---labels=image="{{ .site.image }}",version="{{ .site.good_version }}"
-```
+{% include full_tour_trigger_delivery_good_version.md %}
 
 ![trigger delivery](assets/trigger-delivery.jpg)
 
