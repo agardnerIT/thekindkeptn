@@ -65,7 +65,7 @@ keptn create project fulltour \
 ----
 
 ## Create Service
-Create a service called `hellodemo` (it must be called precisely that - you will see why later). Do it either via the UI or the `keptn` CLI command in the [web terminal](http://localhost:{{ site.ttyd_port }}):
+Create a service called `helloservice` (it must be called precisely that - you will see why later). Do it either via the UI or the `keptn` CLI command in the [web terminal](http://localhost:{{ site.ttyd_port }}):
 
 ```
 keptn create service helloservice --project=fulltour
