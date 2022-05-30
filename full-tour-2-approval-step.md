@@ -53,8 +53,8 @@ In the [web terminal](http://localhost:{{ site.ttyd_port }}) run the same comman
 keptn trigger delivery \
 --project=fulltour \
 --service=helloservice \
---image="ghcr.io/podtato-head/podtatoserver:v0.1.1" \
---labels=image="ghcr.io/podtato-head/podtatoserver",version="v0.1.1"
+--image="{{ .site.image }}:{{ .site.good_version }}" \
+--labels=image="{{ .site.image }}",version="{{ .site.good_version }}"
 ```
 
 ## Approve Production Release
