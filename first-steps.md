@@ -41,7 +41,7 @@ The job-executor is configured to listen for the `sh.keptn.event.hello-world.tri
 
 ### Sounds good. Show me
 
-Switch to the `demo` branch and go to `demoservice/job/jobconfig.yaml`. The files show that the JES listens for `sh.keptn.event.hello-world.triggered` and, in response, spins up an `alpine` container and executes `echo "Hello, world!"`.
+Switch to the `demo` branch and go to `demoservice/job/jobconfig.yaml`. The files show that the Job Executor Service (JES) listens for `sh.keptn.event.hello-world.triggered` and, in response, spins up an `alpine` container and executes `echo "Hello, world!"`.
 
 > Play around with this file: Echo different words or run an entirely different container in response to the event.
 
