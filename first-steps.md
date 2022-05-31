@@ -5,7 +5,8 @@
 Head to the [Keptn Bridge](http://localhost/bridge), which is the UI from which you can observe and manage what Keptn executes.
 
 You should understand a bit of Keptn terminology:
-* Each `stage` contains one or more `sequences`, each of which corresponds to a step required to accomplish the objective.
+* Each Keptn project contains one or more stages, each of which corresponds to an environment, such as development or production.
++ Each stage contains one or more sequences, each of which corresponds to a major objective, such as delivery of an artifact or a rollback action.
 * A sequence is a list of `tasks` to be executed sequentially.
   Most `tasks` describe a piece of work accomplised by the external tools you have configured,
   such as `evaluation` or `approval`.
