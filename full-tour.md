@@ -26,7 +26,7 @@ The tutorial will progress in steps:
 
 1. Please create a brand new, uninitialised Git repository
 2. Save the following shipyard file which defines the new environment
-3. Use the keptn's bridge to create the project visually OR create this file and use the [web terminal](http://localhost:{{ site.ttyd_port }})
+3. Use the Keptn bridge to create the project visually OR create this file and use the [web terminal](http://localhost:{{ site.ttyd_port }})
 
 Web terminal command:
 ```
