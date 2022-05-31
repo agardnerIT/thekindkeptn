@@ -4,7 +4,7 @@ The kind keptn is designed as a disposable, temporary mechanism to quickly evalu
 
 The kind keptn is **not** designed as a production-ready installation. It is **not** designed for long term use. For those, you want [a proper installation of keptn](https://keptn.sh/docs/quickstart) or a SaaS hosted version.
 
-This microsite covers the basics of thekindkeptn. Full docs and tutorials are found on the [keptn site](https://keptn.sh).
+This microsite covers the basics of the kind keptn. It is not intended as a replacement for the full docs and tutorials on the [keptn site](https://keptn.sh).
 
 ----
 
@@ -23,7 +23,7 @@ gardnera/thekindkeptn:{{ .site.thekindkeptn_version }}
 
 ## I've Installed. What Now?
 
-See [first steps](first-steps.md) to start the keptn discovery path.
+See [first steps](first-steps.md) to start the Keptn discovery path.
 
 ----
 
