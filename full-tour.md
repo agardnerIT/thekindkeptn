@@ -131,25 +131,6 @@ The job executor service subscriptions should look like this:
 
 ![three subscriptions](assets/3_subscriptions.jpg)
 
-<!-- 
-Wait for outcome of: https://github.com/keptn/keptn/issues/7885
-
-Add these new events by updating the JES helm chart. Alternatively, event subscriptions can be adjusted in the UI ([keptn's bridge](http://localhost/bridge)). 
-
-```
-JES_VERSION={{ site.job_executor_service_version }}
-KEPTN_API_PROTOCOL=http
-KEPTN_API_HOST=api-gateway-nginx.keptn
-KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 -d)
-TASK_SUBSCRIPTION='sh.keptn.event.hello-world.triggered\,sh.keptn.event.je-deployment.triggered\,sh.keptn.event.je-test.triggered'
-
-helm upgrade -n keptn-jes \
-job-executor-service \
-https://github.com/keptn-contrib/job-executor-service/releases/download/$JES_VERSION/job-executor-service-$JES_VERSION.tgz \
---set remoteControlPlane.topicSubscription="${TASK_SUBSCRIPTION}",remoteControlPlane.api.protocol=${KEPTN_API_PROTOCOL},remoteControlPlane.api.hostname=${KEPTN_API_HOST},remoteControlPlane.api.token=${KEPTN_API_TOKEN}
-```
--->
-
 ----
 
 ## 🎉 Trigger Delivery
@@ -160,6 +141,8 @@ You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-ap
 {% include full_tour_trigger_delivery_good_version.md %}
 
 ![trigger delivery](assets/trigger-delivery.jpg)
+
+Validate that pods version `{{ .site.good_version }}` is running in both environments.
 
 {% include full_tour_check_pod_versions.md %}
 
