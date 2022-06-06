@@ -8,7 +8,7 @@ This is step 3 of the tutorial. If you missed the previous parts, [start here](f
 
 ## Automating a Go or No Go Production Decision
 
-In this step an automated go / no-go decision step will be added. If, based on your criteria, keptn decides the artifact is a `pass`, the release will be automatically promoted to production.
+In this step an automated go / no-go decision step will be added. If, based on your criteria, Keptn decides the artifact is a `pass`, the release will be automatically promoted to production.
 
 If the evaluation is a `failure`, the release will be blocked.
 
@@ -31,7 +31,7 @@ helm install prometheus prometheus-community/prometheus --namespace monitoring -
 
 ## Keptn Retrieves SLIs from Prometheus
 
-Keptn needs to know how to interact with Prometheus; a keptn SLI provider service is used.
+Keptn needs to know how to interact with Prometheus; a Keptn SLI provider service is used.
 
 This service "knows" how to retrieve metrics from Prometheus so we need this **in addition to** Prometheus itself.
 
@@ -131,7 +131,7 @@ Once again, trigger delivery of the artifact:
 
 ## Outcome
 
-The artifact receives a warning score which we told keptn was still good enough to allow an automatic release. Keptn stores a full history of every previous evaluation and will automatically compare new builds against old.
+The artifact receives a warning score which we told Keptn was still good enough to allow an automatic release. Keptn stores a full history of every previous evaluation and will automatically compare new builds against old.
 
 ![](assets/qa-evaluation-1.jpg)
 ![](assets/qa-evaluation-2.jpg)
