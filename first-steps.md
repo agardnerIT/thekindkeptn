@@ -14,14 +14,18 @@ You should understand a bit of Keptn terminology:
 In this case, we have one project, `helloworld`, which has one stage, `demo`,
 that contains one `sequence`, which prints out "Hello, world!".
 
-[Go to the sequence view](http://localhost/bridge/project/helloworld/sequence) for the project and click the sequence.
+* Click `demo` from the Bridge dashboard to go to that stage.
+* Click `hello` to [go to the sequence view](http://localhost/bridge/project/helloworld/sequence) for the project.
+
 You can see that:
 * The sequence has completed successfully
 * The log output is `Hello, world!`
 
 ![hello world sequence](assets/hello-world-sequence.jpg)
 
-During installation you provided a Git upstream repo. This is used as the "backing storage" for keptn. Every change is recorded in this Git upstream.
+The installation created a Git upstream repo that is separate from the repo where your source code is stored.
+This is used as the "backing storage" for keptn. Every change is recorded in this Git upstream.
+To view the contents of this repository from the Bridge, click on "??"
 
 The installer created a keptn project which is defined in the `shipyard.yaml` file stored in the `main` branch of the upstream. A shipyard file defines your environment ([more details here](https://keptn.sh/docs/{{ .site.keptn_docs_version }}/manage/shipyard/)). The shipyard also defines the available sequences and tasks that will execute. Right now there is only one stage: `demo` with one sequence: `hello` and that sequence has only one task: `hello-world`.
 
