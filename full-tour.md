@@ -161,6 +161,8 @@ You can trigger a sequence via the [keptn's API](http://localhost/api/swagger-ap
 
 ![trigger delivery](assets/trigger-delivery.jpg)
 
+{% include full_tour_check_pod_versions.md %}
+
 ----
 
 ## What Happened?
