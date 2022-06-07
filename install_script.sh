@@ -12,8 +12,8 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.15
-KEPTN_VERSION=0.15.0
+KIND_KEPTN_VERSION=0.0.16
+KEPTN_VERSION=0.15.1
 JOB_EXECUTOR_SERVICE_VERSION=0.2.0
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'

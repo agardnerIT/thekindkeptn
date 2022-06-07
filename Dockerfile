@@ -1,6 +1,6 @@
 FROM rancher/k3d:5.3.0-dind
 
-ARG KEPTN_VERSION=0.15.0
+ARG KEPTN_VERSION=0.15.1
 
 COPY install_script.sh /
 COPY k3dconfig.yaml /root/
