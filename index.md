@@ -33,6 +33,8 @@ You now have a Docker container running that contains a small Kubernetes cluster
 with Keptn and the Keptn CLI installed,
 as well as a very simple Keptn project that we will use to explore what Keptn can do.
 
+You will also find a web-based terminal shell on `http://localhost:{{ .site.ttyd_port }}`
+
 See [first steps](first-steps.md) to start the Keptn discovery path.
 
 ----
