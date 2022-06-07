@@ -24,9 +24,12 @@ The tutorial will progress in steps:
 
 ## Create New Project
 
-1. Please create a brand new, uninitialised Git repository
-2. Save the following shipyard file which defines the new environment
-3. Use the Keptn bridge to create the project visually OR create this file and use the [web terminal](http://localhost:{{ site.ttyd_port }})
+1. Create a brand new, uninitialised Git repository (no commits, not even a readme file)
+2. Create a Personal access token with full `Repo` rights (Github > Settings > Developer Settings > Personal access token
+3. Save the following shipyard file which defines the new environment
+4. Use the Keptn bridge to create the project visually OR create this file and use the [web terminal](http://localhost:{{ site.ttyd_port }})
+
+![image](assets/repo-token.png)
 
 Web terminal command:
 ```
