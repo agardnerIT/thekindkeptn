@@ -15,6 +15,8 @@ trap "trap_ctrlc" 2
 KIND_KEPTN_VERSION=0.16.0
 KEPTN_VERSION=0.16.0
 JOB_EXECUTOR_SERVICE_VERSION=0.2.0
+TTYD_VERSION=1.6.3
+TTYD_PORT=7681
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
@@ -24,13 +26,19 @@ echo " ONLY use 'exit'"
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
 echo " This is required to gracefully cleanup docker and k3d before closing."
 echo ""
+echo " >> Watch installation progress and interact with the kubernetes cluster: http://localhost:$TTYD_PORT"
+echo ""
 echo " Installer will continue automatically in 5 seconds"
 echo "------------------------------------------------------------------------"
+# Start web-based terminal available on http://localhost:7681
+nohup ttyd --port $TTYD_PORT bash > /dev/null &
+
 sleep 5
 
 echo "-- Installing Versions --"
 echo "Keptn: $KEPTN_VERSION"
 echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
+echo "Web Terminal (ttyd) Version: $TTYD_VERSION"
 
 echo "-- Bringing up a cluster --"
 k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
