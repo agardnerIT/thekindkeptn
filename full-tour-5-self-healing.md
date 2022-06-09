@@ -4,20 +4,20 @@
 This is step 5 of the tutorial. If you missed the previous parts, start [here](https://github.com/agardnerIT/thekindkeptn/blob/gh-pages/full-tour.md)
 
 ## Overview
-So far a fairly robust delivery pipeline has been built. Optional manual approval steps have been added, automated quality gates were then added to automate and improve on the previous manual approval.
-Finally, release validation was added to run quality evaluations **after** a production release.
+So far, a fairly robust delivery pipeline has been built. Optional manual approval steps have been added, automated quality gates were then added to automate and improve on the previous manual approval.
+Finally, release validation was added to run quality evaluations **after** a production release and ensure quality software **in** production.
 
-This step adds the ability to Keptn to self-heal your application based on problems that Keptn is sent.
+This step adds the ability to Keptn to self-heal your application based on problems sent to Keptn.
 
 ----
 
 ## Scenario
 
-In this scenario, imagine we have a known production response time problem. It can be fixed by scaling the pods.
+Imagine the applicaiton has a known response time problem in production. It can be fixed by scaling the pods - at least until development has a chance to look into the issue.
 
 We will add steps into our Keptn setup to:
 1. Scale the pods (using Helm to upgrade the deployment) when a response time problem is received.
-2. Use locust to generate some new load after the deployment has been scaled
+2. Use `locust` to generate some new load after the deployment has been scaled
 3. Run a quality evaluation to see if the scaling has resolved the issue
 
 > Note: The demo image doesn't actually have a problem pattern that resolves with scaling. So **expect** the quality gate to still provide a warning. Scaling the pods **will** be successful.
@@ -27,9 +27,9 @@ We will add steps into our Keptn setup to:
 ## Add New Sequence to Shipyard
 
 Modify the shipyard in the `main` branch of the Git upstream. Add a new sequence in `production` which will be triggered when a problem is received.
-Importantly this sequence will recursively trigger every 2 minutes until the evaluation is in a `pass` or `warning` state. This allows for escalating self-healing actions.
+This sequence will recursively self-trigger every 2 minutes until the evaluation is in a `pass` or `warning` state. This allows for escalating self-healing actions.
 
-Add this block to the `production stage:
+Add this block to the `production` stage:
 ```
 - name: "remediation"
           triggeredOn:
@@ -101,8 +101,8 @@ spec:
 The `remediation` sequence:
 
 1. Is triggered when a problem is sent to Keptn (you'll see this soon)
-2. `get-action` retrieves the self-healing action from the remediation.yaml file (this will be created soon)
-3. `action` uses the job executor service and helm to scale the `replicaCount` of the deployment
+2. `get-action` retrieves the self-healing action from the `remediation.yaml` file (this will be created soon)
+3. `action` uses the job executor service and `helm` to scale the `replicaCount` of the deployment
 4. After scaling, job executor service again responds to `je-test` and uses `locust` to generate some load
 5. A quality gate evaluation is executed to validate whether or not the scaling actually helped to resolve the issue (expect this to say `warning`)
 6. If the quality gate fails, the sequence will be recursively called every 2 minutes until the evaluation fails.
@@ -115,7 +115,7 @@ This file maps an incoming problem to the healing action that should occur.
 
 For simplicity we have only one action, but multiple actions per problem type are possible. Keptn will try them in order, which means you can try less invasive resolutions first, escalating them if they fail.
 
-The important parts here are `problemType` which denotes the name of the problem type we are expecting to be sent (from an external feed or observability platform). The `action` which denotes what we do when this problem type is received and the `value` which will be used to tell Helm how many replicas we need.
+The important parts here are `problemType` denotes the name of the problem type we are expecting to be sent (from an external feed or observability platform). The `action` denotes what we do when this problem type is received and the `value` will be used to tell `helm` how many replicas are required in the new deployment.
 
 ```
 cat << EOF > helloservice-remediation.yaml
@@ -136,7 +136,8 @@ EOF
 
 Add this file to the Git upstream directly or use the `keptn add-resource` helper command to upload it for you.
 
-Notice that it is stored in Git as `resource.yaml` and not as it is called on disk: `helloservice-remediation.yaml`
+Notice that it is stored in Git as `remediation.yaml` and not as it is called on disk: `helloservice-remediation.yaml`. The filename is important and expected to be `remediation.yaml`.
+
 ```
 keptn add-resource --project=fulltour --stage=production --service=helloservice --resource=helloservice-remediation.yaml --resourceUri=remediation.yaml
 ```
@@ -164,7 +165,7 @@ On the `production` branch of your Git upstream, modify `helloservice/job/config
           - name: REPLICA_COUNT
             value: "$.data.action.value"
             valueFrom: event
-        image: "alpine/helm:3.7.2"
+        image: "{{ .site.helm_image }}"
         serviceAccount: "jes-deploy-using-helm"
         cmd: ["helm"]
         args: ["upgrade", "-n", "$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "$(KEPTN_SERVICE)", "/keptn/charts/$(KEPTN_SERVICE).tgz", "--set", "replicaCount=$(REPLICA_COUNT)"]
@@ -186,7 +187,7 @@ actions:
           - name: IMAGE
             value: "$.data.configurationChange.values.image"
             valueFrom: event
-        image: "alpine/helm:3.7.2"
+        image: "{{ .site.helm_image }}"
         serviceAccount: "jes-deploy-using-helm"
         cmd: ["helm"]
         args: ["upgrade", "--create-namespace", "--install", "-n", "$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "$(KEPTN_SERVICE)", "/keptn/charts/$(KEPTN_SERVICE).tgz", "--set", "image=$(IMAGE)", "--wait"]
@@ -199,7 +200,7 @@ actions:
         files:
           - locust/basic.py
           - locust/locust.conf
-        image: "locustio/locust:2.8.6"
+        image: "{{ .site.locust_image }}"
         cmd: ["locust"]
         args: ["--config", "/keptn/locust/locust.conf", "-f", "/keptn/locust/basic.py", "--host", "http://$(KEPTN_SERVICE).$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "--only-summary"]
 
@@ -217,7 +218,7 @@ actions:
           - name: REPLICA_COUNT
             value: "$.data.action.value"
             valueFrom: event
-        image: "alpine/helm:3.7.2"
+        image: "{{ .site.helm_image }}"
         serviceAccount: "jes-deploy-using-helm"
         cmd: ["helm"]
         args: ["upgrade", "-n", "$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "$(KEPTN_SERVICE)", "/keptn/charts/$(KEPTN_SERVICE).tgz", "--set", "replicaCount=$(REPLICA_COUNT)"]
@@ -239,11 +240,11 @@ We have all the important parts now in place but we're missing one final piece. 
 
 In the Keptn's bridge, add a new subscription for the JES to `action.triggered`.
 
-![image](https://user-images.githubusercontent.com/26523841/172747126-3441114e-99b7-4ceb-a46d-2ef308f8aee8.png)
+![jes action subscription](assets/jes_action_subscription.png)
 
 The job executor service subscriptions should now look like this:
 
-![image](https://user-images.githubusercontent.com/26523841/172747167-dd089276-c6bf-4797-8352-7249367a500e.png)
+![jes subscriptions](assets/jes_subscriptions.png)
 
 ## Create a fake problem
 
@@ -287,7 +288,7 @@ keptn send event -f remediation_trigger.json
 
 When the sequence is complete, you should see:
 
-![image](https://user-images.githubusercontent.com/26523841/172747802-e9c130ca-6e74-408f-9e3f-14bceb1c2e8d.png)
+![remediation sequence complete](assets/remediation_sequence_complete.png)
 
 ----
 
@@ -307,7 +308,7 @@ Open the terminal window (not the web terminal) where you originally executed th
 
 Type `exit` and everything will be automatically deleted for you.
 
-![image](https://user-images.githubusercontent.com/26523841/172749815-cfaafdba-c3f6-4dbd-98a2-c506b3dfe4ae.png)
+![cleanup](assets/cleanup.png)
 
 ----
 
