@@ -1,6 +1,6 @@
 FROM rancher/k3d:5.3.0-dind
 
-ARG KEPTN_VERSION=0.15.1
+ARG KEPTN_VERSION=0.16.0
 ARG TTYD_VERSION=1.6.3
 
 COPY install_script.sh /

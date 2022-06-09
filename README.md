@@ -4,8 +4,27 @@ The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
+1. Create a Git personal access token with full `Repo` status
+2. Create a new **uninitialised** Git upstream repo (no commits, no files, no readme). Keptn needs this.
+3. Set `GIT_USER`, `GIT_REMOTE_URL` and `GIT_TOKEN` below
+
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.docker.internal:host-gateway --publish 7681:7681 gardnera/thekindkeptn:0.16.0
+GIT_USER=<YourGitUsernameHere>
+GIT_REMOTE_URL=https://github.com/me/example.git
+GIT_TOKEN=ghp_********
+```
+
+Now start `thekindkeptn`:
+
+```
+docker run --rm -it \
+--name thekindkeptn \
+-v /var/run/docker.sock:/var/run/docker.sock:ro \
+--add-host=host.docker.internal:host-gateway \
+--env GIT_USER=$GIT_USER \
+--env GIT_REMOTE_URL=$GIT_REMOTE_URL \
+--publish 7681:7681 \
+gardnera/thekindkeptn:0.16.0
 ```
 
 ### Keptn in a Docker Container
