@@ -12,9 +12,11 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.16
-KEPTN_VERSION=0.15.1
+KIND_KEPTN_VERSION=0.16.0
+KEPTN_VERSION=0.16.0
 JOB_EXECUTOR_SERVICE_VERSION=0.2.0
+TTYD_VERSION=1.6.3
+TTYD_PORT=7681
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
 echo "------------------------------------------------------------------------"
@@ -24,13 +26,31 @@ echo " ONLY use 'exit'"
 echo " If things fail, LET THEM, then when you get the bash prompt, type: exit"
 echo " This is required to gracefully cleanup docker and k3d before closing."
 echo ""
-echo " Installer will continue automatically in 5 seconds"
+echo " >> Watch installation progress and interact with the kubernetes cluster: http://localhost:$TTYD_PORT"
+echo ""
 echo "------------------------------------------------------------------------"
+echo ""
+
+if [ -z "$GIT_USER" ] || [ -z "$GIT_TOKEN" ] || [ -z "$GIT_REMOTE_URL" ]
+then
+      echo "Mandatory params: \$GIT_USER or \$GIT_TOKEN or \$GIT_REMOTE_URL are empty. Please pass during 'docker run'."
+      exit
+fi
+
+echo "Final prompt: Are you SURE the upstream Git is uninitialised and has NO prior commits? Keptn requires this."
+echo "Installer will continue automatically in 5 seconds"
+
 sleep 5
+
+# Got all mandatory parameters. Proceeding.
+
+# Start web-based terminal available on http://localhost:7681
+nohup ttyd --port $TTYD_PORT bash > /dev/null &
 
 echo "-- Installing Versions --"
 echo "Keptn: $KEPTN_VERSION"
 echo "Job Executor Service: $JOB_EXECUTOR_SERVICE_VERSION"
+echo "Web Terminal (ttyd) Version: $TTYD_VERSION"
 
 echo "-- Bringing up a cluster --"
 k3d cluster create mykeptn --config=/root/k3dconfig.yaml --wait
@@ -71,18 +91,6 @@ helm install \
 --set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered" \
 job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
-echo "-- Installing Helm Service to namespace 'keptn' (timeout=10m) --"
-helm install \
---namespace keptn --create-namespace \
---wait --timeout=10m \
-helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz
-
-echo "-- Installing JMeter Service to namespace 'keptn' (timeout=10m) --"
-helm install \
---namespace keptn --create-namespace \
---wait --timeout=10m \
-jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz
-
 echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
 
@@ -92,7 +100,7 @@ keptn auth --endpoint=http://host.docker.internal --api-token=$KEPTN_API_TOKEN
 
 echo "-- Create Keptn Hello World Project --"
 wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/shipyard.yaml
-keptn create project helloworld --shipyard=shipyard.yaml
+keptn create project helloworld --shipyard=shipyard.yaml --git-user=$GIT_USER --git-remote-url=$GIT_REMOTE_URL --git-token=$GIT_TOKEN
 keptn create service demoservice --project=helloworld
 
 echo "-- Applying Job Config YAML File. This is the file the job-exector-service looks at to ultimately runs the helloworld container) --"
@@ -100,16 +108,18 @@ wget https://raw.githubusercontent.com/agardnerIT/thekindkeptn/main/jobconfig.ya
 keptn add-resource --project=helloworld --service=demoservice --stage=demo --resource=jobconfig.yaml --resourceUri=job/config.yaml
 
 echo "-- Triggering first Keptn Sequence --"
-keptn trigger sequence --sequence hello --project helloworld --service demoservice --stage demo
+keptn trigger sequence hello --project helloworld --service demoservice --stage demo
 
-echo ========================================================
-echo Keptn is now running
-echo Visit: http://localhost from your host machine
-echo You can trigger a sequence from the bridge: http://localhost
-echo Or using the Keptn CLI:
-echo keptn trigger sequence --sequence hello --project helloworld --service demoservice --stage demo
-echo Type 'exit' to exit the docker container
-echo ========================================================
+echo "========================================================"
+echo "Keptn is now running"
+echo "Visit: http://localhost from your host machine for the Keptns Bridge (UI)"
+echo "Visit: http://localhost:$TTYD_PORT for a browser-based terminal console (kubectl works here)"
+echo "You can trigger a sequence from the bridge: http://localhost"
+echo "Or using the Keptn CLI:"
+echo "keptn trigger sequence hello --project helloworld --service demoservice --stage demo"
+echo ""
+echo "Type 'exit' to exit the docker container"
+echo "========================================================"
 
 # Start up a bash shell to try out thekindkeptn
 cd

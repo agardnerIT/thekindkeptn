@@ -4,14 +4,35 @@ The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
+1. Create a Git personal access token with full `Repo` status
+2. Create a new **uninitialised** Git upstream repo (no commits, no files, no readme). Keptn needs this for the `hello-world` project.
+3. Set `GIT_USER`, `GIT_REMOTE_URL` and `GIT_TOKEN` below
+
 ```
-docker run --rm -it --name thekindkeptn -v /var/run/docker.sock:/var/run/docker.sock:ro --add-host=host.docker.internal:host-gateway gardnera/thekindkeptn:0.0.16
+GIT_USER=<YourGitUsernameHere>
+GIT_REMOTE_URL=https://github.com/me/example.git
+GIT_TOKEN=ghp_********
+```
+
+Now start `thekindkeptn`:
+
+```
+docker run --rm -it \
+--name thekindkeptn \
+-v /var/run/docker.sock:/var/run/docker.sock:ro \
+--add-host=host.docker.internal:host-gateway \
+--env GIT_USER=$GIT_USER \
+--env GIT_REMOTE_URL=$GIT_REMOTE_URL \
+--env GIT_TOKEN=$GIT_TOKEN \
+--publish 7681:7681 \
+gardnera/thekindkeptn:0.16.0
 ```
 
 ### Keptn in a Docker Container
 
 This demo creates a single container with:
 - A k8s cluster inside
+- A web-based terminal window on `http://localhost:7681`
 - Helm is installed
 - Keptn installed to the `keptn` namespace
 - Keptn bridge and API are exposed on localhost on port `80`: `http://localhost`
@@ -43,7 +64,8 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.0.16             | Current version                                           |    0.15.1                         |             0.2.0                                                                     |
+| 0.16.0             | Adds web terminal. Removes jmeter-service and helm-service in favour of job executor service. Mandates Git repo details on startup as keptn 0.16.0 requires them.  |    0.16.0                         |             0.2.0                                                                     |
+| 0.0.16             |                                                           |    0.15.1                         |             0.2.0                                                                     |
 | 0.0.15             |                                                           |    0.15.0                         |             0.2.0                                                                     |
 | 0.0.14             |                                                           |    0.14.2                         |             0.2.0                                                                     |
 | 0.0.13             |                                                           |    0.14.1                         |             0.1.8                                                                     |
