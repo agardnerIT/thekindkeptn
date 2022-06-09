@@ -307,6 +307,10 @@ Open the terminal window (not the web terminal) where you originally executed th
 
 Type `exit` and everything will be automatically deleted for you.
 
+![image](https://user-images.githubusercontent.com/26523841/172749815-cfaafdba-c3f6-4dbd-98a2-c506b3dfe4ae.png)
+
+----
+
 ### So What's Next?
 
 [Deploy Keptn properly](https://keptn.sh/docs/0.16.x/operate/install/) on your cluster to free your SRE and DevOps teams from toil. [Star Keptn on GitHub](https://github.com/keptn/keptn)
