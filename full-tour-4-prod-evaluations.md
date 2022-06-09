@@ -102,3 +102,11 @@ Check the application version running in each environment:
 {% include full_tour_check_pod_versions.md %}
 
 Should show `{{ .site.good_version }}` in both environments.
+
+----
+
+## What Next? Production Self-Healing (Scaling)
+
+As mentioned, problems will always occur in production, so lets equip Keptn to deal with issues.
+
+[Continue to add self-healing to Keptn using Helm](full-tour-5-self-healing.md)
