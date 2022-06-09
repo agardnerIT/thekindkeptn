@@ -12,8 +12,8 @@ function trap_ctrlc ()
 trap "trap_ctrlc" 2
 
 # Set global variables
-KIND_KEPTN_VERSION=0.0.16
-KEPTN_VERSION=0.15.1
+KIND_KEPTN_VERSION=0.16.0
+KEPTN_VERSION=0.16.0
 JOB_EXECUTOR_SERVICE_VERSION=0.2.0
 
 # This is the install script that is included in 'docker build' and executes on 'docker run'
@@ -71,17 +71,17 @@ helm install \
 --set=remoteControlPlane.topicSubscription="sh.keptn.event.hello-world.triggered" \
 job-executor-service https://github.com/keptn-contrib/job-executor-service/releases/download/$JOB_EXECUTOR_SERVICE_VERSION/job-executor-service-$JOB_EXECUTOR_SERVICE_VERSION.tgz
 
-echo "-- Installing Helm Service to namespace 'keptn' (timeout=10m) --"
-helm install \
---namespace keptn --create-namespace \
---wait --timeout=10m \
-helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz
+#echo "-- Installing Helm Service to namespace 'keptn' (timeout=10m) --"
+#helm install \
+#--namespace keptn --create-namespace \
+#--wait --timeout=10m \
+#helm-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/helm-service-$KEPTN_VERSION.tgz
 
-echo "-- Installing JMeter Service to namespace 'keptn' (timeout=10m) --"
-helm install \
---namespace keptn --create-namespace \
---wait --timeout=10m \
-jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz
+#echo "-- Installing JMeter Service to namespace 'keptn' (timeout=10m) --"
+#helm install \
+#--namespace keptn --create-namespace \
+#--wait --timeout=10m \
+#jmeter-service https://github.com/keptn/keptn/releases/download/$KEPTN_VERSION/jmeter-service-$KEPTN_VERSION.tgz
 
 echo "-- Wait for all pods in Keptn namespace to signal ready. (timeout 2 mins) --"
 kubectl -n keptn wait --for=condition=ready pods --all --timeout=2m
