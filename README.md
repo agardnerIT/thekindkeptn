@@ -9,7 +9,7 @@ Expect install to take about 10 minutes. Once complete, Keptn is available on `h
 3. Set `GIT_USER`, `GIT_REMOTE_URL` and `GIT_TOKEN` below
 
 ```
-GIT_USER=<YourGitUsernameHere>
+GIT_USER=YourGitUsernameHere
 GIT_REMOTE_URL=https://github.com/me/example.git
 GIT_TOKEN=ghp_********
 ```
@@ -64,7 +64,7 @@ The possibilities are endless.
 
 | Kind Keptn Version | Notes                                                     | [Keptn](https://keptn.sh) Version | [Job Executor Service](https://github.com/keptn-contrib/job-executor-service) Version |
 |--------------------|-----------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------|
-| 0.16.0             | Adds web terminal. Removes jmeter-service and helm-service in favour of job executor service. Mandates Git repo details on startup as keptn 0.16.0 requires them.  |    0.16.0                         |             0.2.0                                                                     |
+| 0.16.0             | Updates versioning to better match Keptn core versions. Adds web terminal. Removes jmeter-service and helm-service in favour of job executor service. Mandates Git repo details on startup as keptn 0.16.0 requires them.  |    0.16.0                         |             0.2.0                                                                     |
 | 0.0.16             |                                                           |    0.15.1                         |             0.2.0                                                                     |
 | 0.0.15             |                                                           |    0.15.0                         |             0.2.0                                                                     |
 | 0.0.14             |                                                           |    0.14.2                         |             0.2.0                                                                     |
