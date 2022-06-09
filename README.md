@@ -23,6 +23,7 @@ docker run --rm -it \
 --add-host=host.docker.internal:host-gateway \
 --env GIT_USER=$GIT_USER \
 --env GIT_REMOTE_URL=$GIT_REMOTE_URL \
+--env GIT_TOKEN=$GIT_TOKEN \
 --publish 7681:7681 \
 gardnera/thekindkeptn:0.16.0
 ```
