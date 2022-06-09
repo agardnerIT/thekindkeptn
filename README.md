@@ -5,7 +5,7 @@ The easiest way to get started with Keptn. `docker run` for a Keptn instance.
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
 1. Create a Git personal access token with full `Repo` status
-2. Create a new **uninitialised** Git upstream repo (no commits, no files, no readme). Keptn needs this.
+2. Create a new **uninitialised** Git upstream repo (no commits, no files, no readme). Keptn needs this for the `hello-world` project.
 3. Set `GIT_USER`, `GIT_REMOTE_URL` and `GIT_TOKEN` below
 
 ```
