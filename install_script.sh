@@ -28,7 +28,6 @@ echo " This is required to gracefully cleanup docker and k3d before closing."
 echo ""
 echo " >> Watch installation progress and interact with the kubernetes cluster: http://localhost:$TTYD_PORT"
 echo ""
-echo " Installer will continue automatically in 5 seconds"
 echo "------------------------------------------------------------------------"
 echo ""
 
@@ -38,9 +37,8 @@ then
       exit
 fi
 
-echo ">>>"
 echo "Final prompt: Are you SURE the upstream Git is uninitialised and has NO prior commits? Keptn requires this."
-echo ">>>"
+echo "Installer will continue automatically in 5 seconds"
 
 sleep 5
 
