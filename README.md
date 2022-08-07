@@ -2,7 +2,10 @@
 
 > If you're looking to try out Keptn. I now recommend the browser-based, zero install-required tutorial. See the [explore Keptn page](https://keptn.sh/docs/explore/) for the link.
 
-The easiest way to get started with Keptn. `docker run` for a Keptn instance.
+----
+
+`docker run` for a Keptn instance.
+
 
 Expect install to take about 10 minutes. Once complete, Keptn is available on `http://localhost`
 
